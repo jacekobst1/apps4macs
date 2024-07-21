@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <slot/>
+    <div class="min-h-screen pt-6 bg-gray-100">
+        <div class="container mx-auto flex flex-col sm-justify-center">
+            <slot/>
+        </div>
     </div>
 </template>
