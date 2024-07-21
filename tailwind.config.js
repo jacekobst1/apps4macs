@@ -22,4 +22,15 @@ export default {
         forms,
         require('daisyui'),
     ],
+
+    daisyui: {
+        themes: [
+            {
+                lofi: {
+                    ...require("daisyui/src/theming/themes")["lofi"],
+                    primary: "#212124",
+                }
+            }
+        ],
+    },
 };
