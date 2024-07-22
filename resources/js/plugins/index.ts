@@ -8,13 +8,13 @@
 
 // Icons
 import {addIcons, OhVueIcon} from "oh-vue-icons";
-import {CoPlus} from "oh-vue-icons/icons";
+import {CoPlus, OiInfo} from "oh-vue-icons/icons";
 
 // Types
 import type {App} from 'vue'
 
 export function registerIcons(app: App) {
-    addIcons(CoPlus);
+    addIcons(CoPlus, OiInfo);
 
     app.component("v-icon", OhVueIcon);
 }

@@ -14,9 +14,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/list', function () {
-    return Inertia::render('List');
-});
+Route::get('/list', fn() => Inertia::render('List'));
+Route::get('/submit-app', fn() => Inertia::render('SubmitApp'));
+Route::post('/submit-app', fn() => Inertia::render('SubmitApp'));
+Route::get('/test', fn() => Inertia::render('Test'));
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {Head} from '@inertiajs/vue3';
+    import {Head, Link} from '@inertiajs/vue3';
     import GuestLayout from "@/Layouts/GuestLayout.vue";
     import {ref} from "vue";
     import BaseInput from "@/Components/form/BaseInput.vue";
@@ -20,23 +20,25 @@
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
-            <BaseButton class="shadow-2xl">
-                <v-icon name="co-plus" class="mr-2"/>
-                Submit new app
-            </BaseButton>
+            <Link href="/submit-app">
+                <BaseButton class="shadow-2xl">
+                    <v-icon name="co-plus" class="mr-2"/>
+                    Submit new app
+                </BaseButton>
+            </Link>
         </div>
 
         <div class="flex justify-center mb-10">
-            <BaseInput placeholder='Search...' v-model="name" class="w-full shadow-xl"/>
+            <BaseInput v-model="name" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
         <div class="grid grid-cols-4 gap-4 h-32">
-            <div class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer">
+            <div class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
                 <div class="flex items-center mb-2">
                     <ApplicationLogo width="50px" height="50px" class="mr-5"/>
                     <span class="font-bold">Application name</span>
                 </div>
-                <span>Short brief of what this application does...</span>
+                <span>Short brief of what this application does and how it will simplify life of every user...</span>
             </div>
         </div>
     </GuestLayout>
