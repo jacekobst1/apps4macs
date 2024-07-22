@@ -13,18 +13,21 @@
     <Head title="Dashboard"/>
 
     <GuestLayout>
-        <div class="mb-10 text-center">
+        <div class="mb-10">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
-            <h1 class="text-2xl font-bold mb-4">apps4macs</h1>
-            <div class="text-lg mb-4">
-                <p>List of macos apps you can't go past</p>
-                <p>Verified by human beings</p>
+            <h1 class="text-2xl font-bold mb-4">apps4macs 👨‍💻</h1>
+            <div class="text-lg mb-4 text-gray-500">
+                <p>No-brainer apps for devs and powerusers</p>
+                <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
-            <BaseButton>Submit new app</BaseButton>
+            <BaseButton class="shadow-2xl">
+                <v-icon name="co-plus" class="mr-2"/>
+                Submit new app
+            </BaseButton>
         </div>
 
         <div class="flex justify-center mb-10">
-            <BaseInput placeholder="Search" v-model="name" class="w-96"/>
+            <BaseInput placeholder='Search...' v-model="name" class="w-full shadow-xl"/>
         </div>
 
         <div class="grid grid-cols-4 gap-4 h-32">

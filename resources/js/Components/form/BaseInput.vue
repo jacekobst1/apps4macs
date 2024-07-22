@@ -32,10 +32,10 @@
 
 <template>
     <input
+        class="input rounded-xl"
+        :class="sizeClass"
         v-model="model"
         v-bind="$attrs"
-        class="input w-full rounded-xl"
-        :class="sizeClass"
         :placeholder="props.placeholder"
     />
 </template>
