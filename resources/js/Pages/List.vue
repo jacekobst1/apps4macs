@@ -13,7 +13,7 @@
     <Head title="Dashboard"/>
 
     <GuestLayout>
-        <div class="mb-10">
+        <div class="mb-10 pt-6">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
             <h1 class="text-2xl font-bold mb-4">apps4macs 👨‍💻</h1>
             <div class="text-lg mb-4 text-gray-500">

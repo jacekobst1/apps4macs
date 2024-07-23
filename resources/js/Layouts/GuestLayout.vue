@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="min-h-screen pt-6 bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
         <div class="container mx-auto flex flex-col sm-justify-center">
             <slot/>
         </div>

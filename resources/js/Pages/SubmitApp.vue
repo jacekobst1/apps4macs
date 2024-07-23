@@ -7,6 +7,8 @@
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
     import Tooltip from "@/Components/form/Tooltip.vue";
 
+    defineProps({errors: Object})
+
     const form = reactive({
         url: null,
         email: null,
@@ -29,11 +31,12 @@
             <form @submit.prevent="submit" class="min-w-80 max-w-lg">
                 <BaseInput
                     v-model="form.url"
-                    label="App url"
+                    label="Url"
                     placeholder="https://super-cool-landing-page.com"
                     variant="primary"
                     class="mb-2"
                 />
+                <div v-if="errors?.url">{{ errors.url }}</div>
                 <BaseInput
                     v-model="form.email"
                     label="Email"
@@ -45,10 +48,10 @@
                     v-model="form.isPaid"
                     label="Is this a paid app?"
                     variant="primary"
-                    class="mb-4"
+                    class="mb-2"
                 >
                     <Tooltip
-                        text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan, that means that your app is paid. All apps are regularly controlled to prevent scam."/>
+                        text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."/>
                 </BaseCheckbox>
                 <BaseButton type="submit" class="w-full">Submit</BaseButton>
             </form>
