@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SubmitAppRequest;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class AppController extends Controller
 {
-    public function postSubmitApp(Request $request): Response
+    public function postSubmitApp(SubmitAppRequest $request): Response
     {
         return Inertia::render('Auth/CheckEmail');
     }

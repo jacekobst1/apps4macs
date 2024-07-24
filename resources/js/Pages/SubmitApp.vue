@@ -5,9 +5,12 @@
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
-    import Tooltip from "@/Components/form/Tooltip.vue";
+    import Tooltip from "@/Components/form/BaseTooltip.vue";
+    import BaseInputError from "@/Components/form/BaseInputError.vue";
 
-    defineProps({errors: Object})
+    defineProps({
+        errors: Object
+    })
 
     const form = reactive({
         url: null,
@@ -29,21 +32,25 @@
                 <h1 class="font-bold text-xl">Submit your app</h1>
             </div>
             <form @submit.prevent="submit" class="min-w-80 max-w-lg">
-                <BaseInput
-                    v-model="form.url"
-                    label="Url"
-                    placeholder="https://super-cool-landing-page.com"
-                    variant="primary"
-                    class="mb-2"
-                />
-                <div v-if="errors?.url">{{ errors.url }}</div>
-                <BaseInput
-                    v-model="form.email"
-                    label="Email"
-                    placeholder="swift-ui@lover.com"
-                    variant="primary"
-                    class="mb-4"
-                />
+                <div class="mb-4">
+                    <BaseInput
+                        v-model="form.url"
+                        label="Url"
+                        placeholder="https://super-cool-landing-page.com"
+                        variant="primary"
+                    />
+                    <BaseInputError :text="errors?.url"/>
+                </div>
+                <div class="mb-4">
+                    <BaseInput
+                        v-model="form.email"
+                        label="Email"
+                        placeholder="swift-ui@lover.com"
+                        variant="primary"
+                    />
+                    <BaseInputError :text="errors?.email"/>
+
+                </div>
                 <BaseCheckbox
                     v-model="form.isPaid"
                     label="Is this a paid app?"

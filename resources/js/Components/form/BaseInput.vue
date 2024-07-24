@@ -7,6 +7,7 @@
         size?: 'xs' | 'sm' | 'md' | 'lg';
         placeholder?: string;
         label?: string;
+        error?: string;
     }
 
     const props = withDefaults(defineProps<Props>(), {
@@ -14,6 +15,7 @@
         size: 'md',
         placeholder: '',
         label: '',
+        error: '',
     });
 
     const model = defineModel()
