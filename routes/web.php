@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,7 +20,7 @@ Route::get('/list', fn() => Inertia::render('List'));
 Route::get('/submit-app', fn() => Inertia::render('SubmitApp'));
 Route::post('/submit-app', [AppController::class, 'postSubmitApp']);
 Route::get('/check-email', fn() => Inertia::render('Auth/CheckEmail'));
-Route::get('/test', fn() => Inertia::render('Test'));
+Route::get('/test', [TestController::class, 'getTest']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
