@@ -64,7 +64,6 @@
         :class="[
             buttonClasses,
             {'btn-disabled': disabled},
-            'rounded-xl',
         ]"
     >
     <span :class="{'invisible': isLoading}" class="flex items-center">

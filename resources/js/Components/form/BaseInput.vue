@@ -34,7 +34,7 @@
     });
 
     const inputClasses = computed(() => [
-        ['input w-full rounded-xl', sizeClass.value],
+        ['input w-full', sizeClass.value],
         [
             {'': props.variant === "default"},
             {'input-primary': props.variant === "primary"},

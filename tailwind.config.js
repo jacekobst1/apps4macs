@@ -26,11 +26,11 @@ export default {
     daisyui: {
         themes: [
             {
-                lofi: {
-                    ...require("daisyui/src/theming/themes")["lofi"],
+                fantasy: {
+                    ...require("daisyui/src/theming/themes")["fantasy"],
                     primary: "#212124",
-                }
-            }
+                },
+            },
         ],
     },
 };
