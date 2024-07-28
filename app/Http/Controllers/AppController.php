@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmitAppRequest;
+use App\Mail\LoginLink;
 use App\Models\User;
 use Grosv\LaravelPasswordlessLogin\PasswordlessLogin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
 use Str;
@@ -24,8 +26,7 @@ class AppController extends Controller
             ->setRedirectUrl('/list')
             ->generate();
 
-        dump($url);
-        // Send $url in an email or text message to your user
+        Mail::to('jacekobst1@gmail.com')->queue(new LoginLink($url));
 
         return Inertia::render('Auth/CheckEmail');
     }

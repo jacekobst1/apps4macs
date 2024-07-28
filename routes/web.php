@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Mail\LoginLink;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,6 +22,7 @@ Route::get('/submit-app', fn() => Inertia::render('SubmitApp'));
 Route::post('/submit-app', [AppController::class, 'postSubmitApp']);
 Route::get('/check-email', fn() => Inertia::render('Auth/CheckEmail'));
 Route::get('/test', [TestController::class, 'getTest']);
+Route::get('/test-mail', fn() => (new LoginLink('apps4macs.test'))->render());
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
