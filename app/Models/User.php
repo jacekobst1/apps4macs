@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
+
+use function Illuminate\Events\queueable;
 
 /**
  * @mixin IdeHelperUser
@@ -18,6 +21,7 @@ class User extends Authenticatable implements IAuthenticatable
     use HasUuids;
     use HasFactory;
     use Notifiable;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +55,15 @@ class User extends Authenticatable implements IAuthenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::updated(queueable(function (User $customer) {
+            if ($customer->hasStripeId()) {
+                $customer->syncStripeCustomerDetails();
+            }
+        }));
     }
 
     public function appTemplate(): HasOne
