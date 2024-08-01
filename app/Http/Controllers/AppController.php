@@ -3,42 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmitAppRequest;
-use App\Mail\LoginLink;
 use App\Models\User;
-use Grosv\LaravelPasswordlessLogin\PasswordlessLogin;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
 use Str;
+use Throwable;
 
 class AppController extends Controller
 {
-    public function postSubmitApp(SubmitAppRequest $request): Response
+    /**
+     * @throws Throwable
+     */
+    public function postSubmitApp(SubmitAppRequest $request): Response|JsonResponse
     {
-        /** @var User&Authenticatable $user */
+        /** @var User $user */
+        $user = User::create([
+            'email' => $request->email,
+            'name' => strstr($request->email, '@', true),
+            'password' => Hash::make(Str::random(32)),
+        ]);
 
-        DB::transaction(function () use ($request, &$user) {
-            /** @var User $user */
-            $user = User::create([
-                'email' => $request->email,
-                'name' => strstr($request->email, '@', true),
-                'password' => Hash::make(Str::random(32)),
-            ]);
+        $user->appTemplate()->create([
+            'url' => $request->url,
+        ]);
 
-            $user->appTemplate()->create([
-                'name' => $request->url,
-            ]);
+        Auth::login($user);
 
-            $url = PasswordlessLogin::forUser($user)
-                ->setRedirectUrl('/list')
-                ->generate();
-
-            Mail::to('jacekobst1@gmail.com')->queue(new LoginLink($url));
-        });
-
-        return Inertia::render('Auth/CheckEmail');
+        // TODO choose a subscription type on frontend first and send it in $request
+        if ($request->isPaid) {
+            $checkoutUrl = Auth::user()
+                ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
+                ->allowPromotionCodes()
+                ->checkout([
+                    'success_url' => env('APP_URL') . '/create-app',
+                    'cancel_url' => env('APP_URL') . '/',
+                ]);
+            return response()->json(['checkoutUrl' => $checkoutUrl]);
+        } else {
+            return Inertia::render('CreateApp');
+        }
     }
 }

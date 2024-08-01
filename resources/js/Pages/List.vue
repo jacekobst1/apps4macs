@@ -1,18 +1,18 @@
 <script setup lang="ts">
     import {Head, Link} from '@inertiajs/vue3';
-    import GuestLayout from "@/Layouts/GuestLayout.vue";
     import {ref} from "vue";
     import BaseInput from "@/Components/form/BaseInput.vue";
     import ApplicationLogo from "@/Components/ApplicationLogo.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
+    import StandardLayout from "@/Layouts/StandardLayout.vue";
 
     const name = ref('');
 </script>
 
 <template>
-    <Head title="Dashboard"/>
+    <Head title="List"/>
 
-    <GuestLayout>
+    <StandardLayout>
         <div class="mb-10 pt-6">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
             <h1 class="text-2xl font-bold mb-4">apps4macs 👨‍💻</h1>
@@ -41,5 +41,5 @@
                 <span>Short brief of what this application does and how it will simplify life of every user...</span>
             </div>
         </div>
-    </GuestLayout>
+    </StandardLayout>
 </template>

@@ -13,4 +13,8 @@ class AppTemplate extends Model
 {
     use HasUuids;
     use HasFactory;
+
+    protected $fillable = [
+        'url',
+    ];
 }

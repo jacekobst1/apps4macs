@@ -12,10 +12,10 @@
             <div class="card bg-white w-96 shadow-xl rounded-xl">
                 <div class="card-body">
                     <v-icon name="io-mail-unread-outline" class="w-24 h-24"/>
-                    <h2 class="card-title">Thank you for submitting your app!</h2>
+                    <h2 class="card-title">Login link sent!</h2>
                     <p>Check your email for login link. If it's not there, check spam folder</p>
                     <div class="card-actions justify-end">
-                        <BaseLinkButton href="/list">Go back</BaseLinkButton>
+                        <BaseLinkButton href="/">Go back</BaseLinkButton>
                     </div>
                 </div>
             </div>

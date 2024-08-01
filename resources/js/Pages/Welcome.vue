@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+    import {Head, Link} from '@inertiajs/vue3';
 
-defineProps<{
-    canLogin?: boolean;
-    canRegister?: boolean;
-    laravelVersion: string;
-    phpVersion: string;
-}>();
+    defineProps<{
+        canLogin?: boolean;
+        canRegister?: boolean;
+        laravelVersion: string;
+        phpVersion: string;
+    }>();
 
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
+    function handleImageError() {
+        document.getElementById('screenshot-container')?.classList.add('!hidden');
+        document.getElementById('docs-card')?.classList.add('!row-span-1');
+        document.getElementById('docs-card-content')?.classList.add('!flex-row');
+        document.getElementById('background')?.classList.add('!hidden');
+    }
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Welcome"/>
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <img
             id="background"
@@ -269,59 +269,59 @@ function handleImageError() {
                                     <a
                                         href="https://forge.laravel.com"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
-                                        >Forge</a
+                                    >Forge</a
                                     >,
                                     <a
                                         href="https://vapor.laravel.com"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Vapor</a
+                                    >Vapor</a
                                     >,
                                     <a
                                         href="https://nova.laravel.com"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Nova</a
+                                    >Nova</a
                                     >,
                                     <a
                                         href="https://envoyer.io"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Envoyer</a
+                                    >Envoyer</a
                                     >, and
                                     <a
                                         href="https://herd.laravel.com"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Herd</a
+                                    >Herd</a
                                     >
                                     help you take your projects to the next level. Pair them with powerful open source
                                     libraries like
                                     <a
                                         href="https://laravel.com/docs/billing"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Cashier</a
+                                    >Cashier</a
                                     >,
                                     <a
                                         href="https://laravel.com/docs/dusk"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Dusk</a
+                                    >Dusk</a
                                     >,
                                     <a
                                         href="https://laravel.com/docs/broadcasting"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Echo</a
+                                    >Echo</a
                                     >,
                                     <a
                                         href="https://laravel.com/docs/horizon"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Horizon</a
+                                    >Horizon</a
                                     >,
                                     <a
                                         href="https://laravel.com/docs/sanctum"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Sanctum</a
+                                    >Sanctum</a
                                     >,
                                     <a
                                         href="https://laravel.com/docs/telescope"
                                         class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Telescope</a
+                                    >Telescope</a
                                     >, and more.
                                 </p>
                             </div>

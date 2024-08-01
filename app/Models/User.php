@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 use function Illuminate\Events\queueable;
 
@@ -65,6 +67,13 @@ class User extends Authenticatable implements IAuthenticatable
             }
         }));
     }
+
+    // Needed for properly generating magic link in MagicLoginController
+    public function getAuthIdentifier(): UuidInterface
+    {
+        return Uuid::fromString($this->getKey());
+    }
+
 
     public function appTemplate(): HasOne
     {
