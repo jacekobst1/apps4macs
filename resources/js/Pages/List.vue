@@ -6,6 +6,10 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
+    defineProps({
+        auth: Object
+    })
+
     const name = ref('');
 </script>
 
@@ -20,7 +24,7 @@
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
-            <Link href="/submit-app">
+            <Link :href="auth?.user ? '/submit-app' : '/sign-up'">
                 <BaseButton class="shadow-2xl">
                     <v-icon name="co-plus" class="mr-2"/>
                     Submit new app

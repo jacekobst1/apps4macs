@@ -15,4 +15,11 @@ final class MagicLoginRequest extends Data
         public readonly string $email,
     ) {
     }
+
+    public static function messages(): array
+    {
+        return [
+            'email.exists' => 'Account not found. If you want to create one, submit your app first.',
+        ];
+    }
 }

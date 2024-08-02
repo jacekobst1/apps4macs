@@ -19,17 +19,17 @@
     })
 
     function submit() {
-        router.post('/submit-app', form)
+        router.post('/sign-up', form)
     }
 </script>
 
 <template>
-    <Head title="Create app"/>
+    <Head title="Submit app"/>
 
     <GuestLayout class="pt-0">
         <div class="w-fit h-screen self-center flex flex-col justify-center">
             <div class="w-full mb-6">
-                <h1 class="font-bold text-xl">Create your new app!</h1>
+                <h1 class="font-bold text-xl">Submit your app</h1>
             </div>
             <form @submit.prevent="submit" class="min-w-80 max-w-lg">
                 <div class="mb-4">

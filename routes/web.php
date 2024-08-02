@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\MagicLoginController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Mail\LoginLink;
@@ -44,11 +45,13 @@ Route::post('/login', [
 ]);
 Route::get('/check-email', fn() => Inertia::render('Auth/CheckEmail'));
 
-// App
-Route::get('/', fn() => Inertia::render('List'))->name('list');
-Route::get('/submit-app', fn() => Inertia::render('SubmitApp'));
-Route::post('/submit-app', [AppController::class, 'postSubmitApp']);
-Route::get('/create-app', fn() => Inertia::render('SubmitApp'));
+// List
+Route::get('/', [ListController::class, 'getList'])->name('list');
+
+// App submit
+Route::get('/sign-up', [AppController::class, 'getSignup']);
+Route::post('/sign-up', [AppController::class, 'postSignup']);
+Route::get('/submit-app', [AppController::class, 'getSubmitApp'])->name('submit-app');
 
 // Test
 Route::get('/test', [TestController::class, 'getTest']);
