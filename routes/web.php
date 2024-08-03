@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\MagicLoginController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -36,6 +37,8 @@ Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 Route::get('/sign-up', [AppController::class, 'getSignup']);
 Route::post('/sign-up', [AppController::class, 'postSignup']);
 
+Route::get('/subscription-checkout', [StripeController::class, 'getSubscriptionCheckout']);
+
 Route::get('/login', [MagicLoginController::class, 'getMagicLogin'])->name('login');
 Route::post('/login', [MagicLoginController::class, 'postMagicLogin']);
 Route::get('/check-email', [MagicLoginController::class, 'getCheckEmail'])->name('check-email');
@@ -44,15 +47,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/submit-app', [AppController::class, 'getSubmitApp'])->name('submit-app');
 });
 
-// Stripe (todo move to separate controller)
-Route::get('/subscription-checkout', function (Request $request) {
-    return \Illuminate\Support\Facades\Auth::user()
-        ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
-        ->allowPromotionCodes()
-        ->checkout([
-            'success_url' => env('APP_URL') . '/dashboard',
-            'cancel_url' => env('APP_URL') . '/submit-app',
-        ]);
-});
 
 require __DIR__ . '/auth.php';
