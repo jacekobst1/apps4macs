@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Authenticatable as IAuthenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,7 +18,7 @@ use function Illuminate\Events\queueable;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements IAuthenticatable
+class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
 {
     use HasUuids;
     use HasFactory;

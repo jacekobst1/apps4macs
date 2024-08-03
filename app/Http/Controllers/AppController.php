@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -31,6 +32,8 @@ class AppController extends Controller
             'password' => Hash::make(Str::random(32)),
         ]);
 
+        event(new Registered($user));
+
         $user->appTemplate()->create([
             'url' => $request->url,
         ]);
@@ -44,7 +47,7 @@ class AppController extends Controller
                 ->allowPromotionCodes()
                 ->checkout([
                     'success_url' => route('submit-app'),
-                    'cancel_url' => route('list'),
+                    'cancel_url' => route('homepage'),
                 ]);
             return Inertia::location($checkout->toArray()['url']);
         } else {

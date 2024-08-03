@@ -2,12 +2,9 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\MagicLoginController;
-use App\Http\Controllers\ListController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
-use App\Mail\LoginLink;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /**
  * Laravel routes
@@ -32,32 +29,22 @@ Route::middleware('auth')->group(function () {
 });
 
 /**
- * My routes
+ * My routes -----------------------------------------------------------------------------------------------------------
  */
-// Login
-Route::get('/login', [
-    MagicLoginController::class,
-    'getMagicLogin'
-])->name('login');
-Route::post('/login', [
-    MagicLoginController::class,
-    'postMagicLogin'
-]);
-Route::get('/check-email', fn() => Inertia::render('Auth/CheckEmail'));
+Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
-// List
-Route::get('/', [ListController::class, 'getList'])->name('list');
-
-// App submit
 Route::get('/sign-up', [AppController::class, 'getSignup']);
 Route::post('/sign-up', [AppController::class, 'postSignup']);
-Route::get('/submit-app', [AppController::class, 'getSubmitApp'])->name('submit-app');
 
-// Test
-Route::get('/test', [TestController::class, 'getTest']);
-Route::get('/test-mail', fn() => (new LoginLink('apps4macs.test'))->render());
+Route::get('/login', [MagicLoginController::class, 'getMagicLogin'])->name('login');
+Route::post('/login', [MagicLoginController::class, 'postMagicLogin']);
+Route::get('/check-email', [MagicLoginController::class, 'getCheckEmail'])->name('check-email');
 
-// Stripe
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/submit-app', [AppController::class, 'getSubmitApp'])->name('submit-app');
+});
+
+// Stripe (todo move to separate controller)
 Route::get('/subscription-checkout', function (Request $request) {
     return \Illuminate\Support\Facades\Auth::user()
         ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')

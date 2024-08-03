@@ -8,6 +8,7 @@ use App\Http\Requests\MagicLoginRequest;
 use App\Mail\LoginLink;
 use App\Models\User;
 use Grosv\LaravelPasswordlessLogin\PasswordlessLogin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,7 +20,7 @@ final readonly class MagicLoginController
         return Inertia::render('Auth/MagicLogin');
     }
 
-    public function postMagicLogin(MagicLoginRequest $request): Response
+    public function postMagicLogin(MagicLoginRequest $request): RedirectResponse
     {
         $user = User::whereEmail($request->email)->firstOrFail();
 
@@ -30,6 +31,11 @@ final readonly class MagicLoginController
         // TODO change to real email
         Mail::to('jacekobst1@gmail.com')->queue(new LoginLink($url));
 
+        return to_route('check-email');
+    }
+
+    public function getCheckEmail(): Response
+    {
         return Inertia::render('Auth/CheckEmail');
     }
 }
