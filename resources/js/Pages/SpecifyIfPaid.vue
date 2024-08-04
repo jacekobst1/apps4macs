@@ -6,7 +6,7 @@
 
     function makeRequest(isPaid: boolean) {
         router.get('/new-app/submit', {
-            isPaid: isPaid
+            isPaid: isPaid ? 1 : 0,
         });
     }
 </script>

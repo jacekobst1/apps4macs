@@ -67,7 +67,6 @@ class AppController extends Controller
         $userAlreadyHasFreeApp = false;
         $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
 
-        // TODO handle the form
         if (!$request->isPaid) {
             if ($userAlreadyHasFreeApp) {
                 // return "You can have at most one free app"
