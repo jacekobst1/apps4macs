@@ -18,7 +18,7 @@
         isPaid: false,
     })
 
-    function submit() {
+    function makeRequest() {
         router.post('/sign-up', form)
     }
 </script>
@@ -31,7 +31,7 @@
             <div class="w-full mb-6">
                 <h1 class="font-bold text-xl">Submit your app</h1>
             </div>
-            <form @submit.prevent="submit" class="min-w-80 max-w-lg">
+            <form @submit.prevent="makeRequest" class="min-w-80 max-w-lg">
                 <div class="mb-4">
                     <BaseInput
                         v-model="form.url"

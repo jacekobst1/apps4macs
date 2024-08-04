@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetSubmitRequest;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -46,21 +47,45 @@ class AppController extends Controller
                 ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
                 ->allowPromotionCodes()
                 ->checkout([
-                    'success_url' => route('submit-app'),
+                    'success_url' => route('new-app.submit'),
                     'cancel_url' => route('homepage'),
                 ]);
             return Inertia::location($checkout->toArray()['url']);
         } else {
-            return to_route('submit-app');
+            return to_route('new-app.submit');
         }
     }
 
-    public function getSubmitApp(): Response
+    public function getSpecifyIfPaid(): Response
     {
-        return Inertia::render('SubmitApp');
+        return Inertia::render('SpecifyIfPaid');
     }
 
-    public function postSubmitApp(): void
+    public function getSubmit(GetSubmitRequest $request): Response
+    {
+        $userAlreadyHasPaidApp = true;
+        $userAlreadyHasFreeApp = false;
+        $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
+
+        // TODO handle the form
+        if (!$request->isPaid) {
+            if ($userAlreadyHasFreeApp) {
+                // return "You can have at most one free app"
+            } else {
+                return Inertia::render('SubmitApp');
+            }
+        }
+
+        if ($request->isPaid) {
+            if ($userCanCreateNewApp) {
+                return Inertia::render('SubmitApp');
+            } else {
+                // return subscription page
+            }
+        }
+    }
+
+    public function postSubmit(): void
     {
         // todo
     }

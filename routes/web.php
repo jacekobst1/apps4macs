@@ -44,7 +44,10 @@ Route::post('/login', [MagicLoginController::class, 'postMagicLogin']);
 Route::get('/check-email', [MagicLoginController::class, 'getCheckEmail'])->name('check-email');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/submit-app', [AppController::class, 'getSubmitApp'])->name('submit-app');
+    Route::prefix('new-app')->group(function () {
+        Route::get('/specify-if-paid', [AppController::class, 'getSpecifyIfPaid'])->name('new-app.specify-if-paid');
+        Route::get('/submit', [AppController::class, 'getSubmit'])->name('new-app.submit');
+    });
 });
 
 

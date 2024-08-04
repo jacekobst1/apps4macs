@@ -24,7 +24,7 @@
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
-            <Link :href="auth?.user ? '/submit-app' : '/sign-up'">
+            <Link :href="auth?.user ? '/new-app/specify-if-paid' : '/sign-up'">
                 <BaseButton class="shadow-2xl">
                     <v-icon name="co-plus" class="mr-2"/>
                     Submit new app
