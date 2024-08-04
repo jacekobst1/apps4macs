@@ -2,7 +2,7 @@
     <p style="font-weight: bold">Hello!</p>
     <p>To finish logging in please click the button below:</p>
     @component('mail::button', ['url' => $url])
-        Click to login
+        Login
     @endcomponent
     @component('mail::subcopy')
         <div style=" font-size: 12px;">
