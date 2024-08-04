@@ -24,7 +24,7 @@
 </script>
 
 <template>
-    <Head title="Submit app"/>
+    <Head title="Sign up"/>
 
     <GuestLayout class="pt-0">
         <div class="w-fit h-screen self-center flex flex-col justify-center">
