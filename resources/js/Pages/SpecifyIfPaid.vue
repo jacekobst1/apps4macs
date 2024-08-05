@@ -4,9 +4,15 @@
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
 
+    defineProps<{
+        flash: {
+            validationMessage?: string,
+        },
+    }>();
+
     function makeRequest(isPaid: boolean) {
         router.get('/new-app/submit', {
-            isPaid: isPaid ? 1 : 0,
+            is_paid: isPaid ? 1 : 0,
         });
     }
 </script>
@@ -36,6 +42,7 @@
                     No
                 </BaseButton>
             </div>
+            <span v-if="flash.validationMessage" class="text-red-500 mt-5">{{ flash.validationMessage }}</span>
         </div>
     </StandardLayout>
 </template>

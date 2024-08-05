@@ -8,7 +8,6 @@
 
 <template>
     <span v-if="text" class="text-red-700 text-sm ml-1">{{ text }}</span>
-
 </template>
 
 <style scoped>

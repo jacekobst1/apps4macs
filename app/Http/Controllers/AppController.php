@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GetSubmitRequest;
-use App\Http\Requests\SignUpRequest;
+use App\Http\Requests\PostSignUpRequest;
+use App\Http\Requests\PostSubmitRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
 use Str;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
@@ -24,7 +26,7 @@ class AppController extends Controller
     /**
      * @throws Throwable
      */
-    public function postSignUp(SignUpRequest $request): Response|SymfonyResponse
+    public function postSignUp(PostSignUpRequest $request): Response|SymfonyResponse
     {
         /** @var User $user */
         $user = User::create([
@@ -42,7 +44,7 @@ class AppController extends Controller
         Auth::login($user);
 
         // TODO choose a subscription type on frontend first and send it in $request
-        if ($request->isPaid) {
+        if ($request->is_paid) {
             $checkout = Auth::user()
                 ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
                 ->allowPromotionCodes()
@@ -61,31 +63,28 @@ class AppController extends Controller
         return Inertia::render('SpecifyIfPaid');
     }
 
-    public function getSubmit(GetSubmitRequest $request): Response
+    public function getSubmit(GetSubmitRequest $request): Response|RedirectResponse|null
     {
-        $userAlreadyHasPaidApp = true;
-        $userAlreadyHasFreeApp = false;
-        $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
-
-        if (!$request->isPaid) {
-            if ($userAlreadyHasFreeApp) {
-                // return "You can have at most one free app"
-            } else {
-                return Inertia::render('SubmitApp');
-            }
+        if (Auth::user()->canCreateApp($request->is_paid)) {
+            return Inertia::render('SubmitApp');
         }
 
-        if ($request->isPaid) {
-            if ($userCanCreateNewApp) {
-                return Inertia::render('SubmitApp');
-            } else {
-                // return subscription page
-            }
+        if (!$request->is_paid) {
+            session()->flash('validationMessage', 'You can have only one free app without subscription');
+
+            return to_route('new-app.specify-if-paid');
+        }
+
+        if ($request->is_paid) {
+            // return subscription page
         }
     }
 
-    public function postSubmit(): void
+    public function postSubmit(PostSubmitRequest $request): void
     {
-        // todo
+        if (!Auth::user()->canCreateApp($request->is_paid)) {
+            // throw exception
+        }
+        // create app
     }
 }

@@ -10,7 +10,7 @@ use Spatie\LaravelData\Attributes\Validation\Unique;
 use Spatie\LaravelData\Attributes\Validation\Url;
 use Spatie\LaravelData\Data;
 
-final class SignUpRequest extends Data
+final class PostSignUpRequest extends Data
 {
     public function __construct(
         #[Url, ActiveUrl]
@@ -19,7 +19,7 @@ final class SignUpRequest extends Data
         #[Email, Unique('users', 'email')]
         public readonly string $email,
 
-        public readonly bool $isPaid,
+        public readonly bool $is_paid,
     ) {
     }
 

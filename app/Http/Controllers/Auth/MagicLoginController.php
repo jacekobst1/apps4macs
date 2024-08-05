@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\MagicLoginRequest;
+use App\Http\Requests\PostMagicLoginRequest;
 use App\Mail\LoginLink;
 use App\Models\User;
 use Grosv\LaravelPasswordlessLogin\PasswordlessLogin;
@@ -20,7 +20,7 @@ final readonly class MagicLoginController
         return Inertia::render('Auth/MagicLogin');
     }
 
-    public function postMagicLogin(MagicLoginRequest $request): RedirectResponse
+    public function postMagicLogin(PostMagicLoginRequest $request): RedirectResponse
     {
         $user = User::whereEmail($request->email)->firstOrFail();
 

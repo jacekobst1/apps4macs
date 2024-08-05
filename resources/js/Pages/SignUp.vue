@@ -11,7 +11,7 @@
     const form = reactive({
         url: null,
         email: null,
-        isPaid: false,
+        is_paid: false,
     })
 
     function makeRequest() {
@@ -48,7 +48,7 @@
 
                 </div>
                 <BaseCheckbox
-                    v-model="form.isPaid"
+                    v-model="form.is_paid"
                     label="Is this a paid app?"
                     variant="primary"
                     class="mb-2"

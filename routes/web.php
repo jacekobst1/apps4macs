@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('new-app')->group(function () {
         Route::get('/specify-if-paid', [AppController::class, 'getSpecifyIfPaid'])->name('new-app.specify-if-paid');
         Route::get('/submit', [AppController::class, 'getSubmit'])->name('new-app.submit');
+        Route::post('/submit', [AppController::class, 'postSubmit']);
     });
 });
 
