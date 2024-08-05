@@ -8,10 +8,6 @@
     import Tooltip from "@/Components/form/BaseTooltip.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
 
-    defineProps({
-        errors: Object
-    })
-
     const form = reactive({
         url: null,
         email: null,
@@ -39,7 +35,7 @@
                         placeholder="https://super-cool-landing-page.com"
                         variant="primary"
                     />
-                    <BaseInputError :text="errors?.url"/>
+                    <BaseInputError :text="form.errors?.url"/>
                 </div>
                 <div class="mb-4">
                     <BaseInput
@@ -48,7 +44,7 @@
                         placeholder="swift-ui@lover.com"
                         variant="primary"
                     />
-                    <BaseInputError :text="errors?.email"/>
+                    <BaseInputError :text="form.errors?.email"/>
 
                 </div>
                 <BaseCheckbox
