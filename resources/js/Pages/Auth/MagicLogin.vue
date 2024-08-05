@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import GuestLayout from "@/Layouts/GuestLayout.vue";
-    import {Head, router} from "@inertiajs/vue3";
-    import {reactive} from 'vue'
+    import {Head, useForm} from "@inertiajs/vue3";
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
@@ -10,12 +9,12 @@
         errors: Object
     })
 
-    const form = reactive({
+    const form = useForm({
         email: null,
     })
 
-    function submit() {
-        router.post('/login', form)
+    function makeRequest() {
+        form.post('/login');
     }
 </script>
 
@@ -27,7 +26,7 @@
             <div class="w-full mb-6">
                 <h1 class="font-bold text-xl">Login</h1>
             </div>
-            <form @submit.prevent="submit" class="min-w-80 max-w-lg">
+            <form @submit.prevent="makeRequest" class="min-w-80 max-w-lg">
                 <div class="mb-4">
                     <BaseInput
                         v-model="form.email"

@@ -1,21 +1,20 @@
 <script setup lang="ts">
     import GuestLayout from "@/Layouts/GuestLayout.vue";
-    import {Head, router} from "@inertiajs/vue3";
-    import {reactive} from 'vue'
+    import {Head, useForm} from "@inertiajs/vue3";
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
     import Tooltip from "@/Components/form/BaseTooltip.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
 
-    const form = reactive({
+    const form = useForm({
         url: null,
         email: null,
         is_paid: false,
     })
 
     function makeRequest() {
-        router.post('/sign-up', form)
+        form.post('/sign-up')
     }
 </script>
 

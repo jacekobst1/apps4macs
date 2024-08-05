@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import GuestLayout from "@/Layouts/GuestLayout.vue";
-    import {Head, router, useForm} from "@inertiajs/vue3";
+    import {Head, useForm} from "@inertiajs/vue3";
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
@@ -15,7 +15,7 @@
     })
 
     function submit() {
-        router.post('/new-app/submit', {})
+        form.post('/new-app/submit');
     }
 </script>
 
