@@ -5,17 +5,38 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import BaseTextarea from "@/Components/form/BaseTextarea.vue";
+    import BaseLabel from "@/Components/form/BaseLabel.vue";
 
-    const form = useForm({
+    const props = defineProps<{
+        is_paid: boolean
+    }>();
+
+    const form = useForm<{
+        logo: File | null,
+        url: string | null,
+        title: string | null,
+        sentence: string | null,
+        description: string | null,
+        is_paid: boolean | null,
+    }>({
         logo: null,
         url: null,
         title: null,
         sentence: null,
         description: null,
+        is_paid: props.is_paid,
     })
 
     function submit() {
         form.post('/new-app/submit');
+    }
+
+    function handleFileChange(event: Event) {
+        const input = event.target as HTMLInputElement;
+
+        if (input.files && input.files.length > 0) {
+            form.logo = input.files[0];
+        }
     }
 </script>
 
@@ -29,7 +50,14 @@
             </div>
             <form @submit.prevent="submit" class="min-w-96 max-w-lg">
                 <div class="mb-4">
-                    <input type="file" class="file-input w-full max-w-xs"/>
+                    <BaseLabel text="Logo">
+                        <input
+                            @change="handleFileChange"
+                            type="file"
+                            id="logo-file-input"
+                            class="file-input file-input-sm md:file-input-md w-full"
+                        />
+                    </BaseLabel>
                     <BaseInputError :text="form.errors?.logo"/>
                 </div>
                 <div class="mb-4">

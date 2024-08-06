@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable as IAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -75,8 +76,34 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
     }
 
 
+    /**
+     * Relations
+     */
     public function appTemplate(): HasOne
     {
         return $this->hasOne(AppTemplate::class);
+    }
+
+    public function apps(): HasMany
+    {
+        return $this->hasMany(App::class);
+    }
+
+    /**
+     * Custom methods
+     */
+    public function getNumberOfAllowedApps(): int
+    {
+        return 1;
+    }
+
+    public function canCreateApp(bool $isPaid): bool
+    {
+        $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
+        if (!$isPaid) {
+            return $this->apps()->free()->count() === 0;
+        }
+
+        return $this->getNumberOfAllowedApps() > $this->apps()->paid()->count();
     }
 }

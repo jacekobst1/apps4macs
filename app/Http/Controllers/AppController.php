@@ -66,10 +66,13 @@ class AppController extends Controller
     public function getSubmit(GetSubmitRequest $request): Response|RedirectResponse|null
     {
         if (Auth::user()->canCreateApp($request->is_paid)) {
-            return Inertia::render('SubmitApp');
+            return Inertia::render('SubmitApp', [
+                'is_paid' => $request->is_paid,
+            ]);
         }
 
         if (!$request->is_paid) {
+            // todo display this as toast and redirect to subscription page
             session()->flash('validationMessage', 'You can have only one free app without subscription');
 
             return to_route('new-app.specify-if-paid');
@@ -80,11 +83,23 @@ class AppController extends Controller
         }
     }
 
-    public function postSubmit(PostSubmitRequest $request): void
+    public function postSubmit(PostSubmitRequest $request): Response
     {
         if (!Auth::user()->canCreateApp($request->is_paid)) {
-            // throw exception
+            // return subscription page
         }
-        // create app
+
+//        Storage::put('/apps/1/logos', $request->logo);
+
+        Auth::user()->apps()->create([
+            'url' => $request->url,
+            'title' => $request->title,
+            'sentence' => $request->sentence,
+            'description' => $request->description,
+            'is_paid' => $request->is_paid,
+//            'logo' => '/apps/1/logos',
+        ]);
+
+        return Inertia::render('Homepage');
     }
 }
