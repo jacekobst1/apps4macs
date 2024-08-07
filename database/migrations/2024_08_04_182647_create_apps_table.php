@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained('users');
             $table->text('url');
-            $table->text('logo');
             $table->text('title');
             $table->text('sentence');
             $table->text('description');

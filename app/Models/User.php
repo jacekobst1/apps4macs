@@ -99,6 +99,8 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
 
     public function canCreateApp(bool $isPaid): bool
     {
+        return true; // todo remove
+        
         $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
         if (!$isPaid) {
             return $this->apps()->free()->count() === 0;

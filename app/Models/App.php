@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class App extends Model
+/**
+ * @mixin IdeHelperApp
+ */
+class App extends Model implements HasMedia
 {
     use HasUuids;
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'url',
@@ -29,11 +35,20 @@ class App extends Model
         $query->whereIsPaid(true);
     }
 
-    /**
-     * Scope a query to only include active users.
-     */
     public function scopeFree(Builder $query): void
     {
         $query->whereIsPaid(false);
+    }
+
+
+    /**
+     * Spatie media-library
+     */
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('logo')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']);
     }
 }

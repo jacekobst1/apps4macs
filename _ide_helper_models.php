@@ -11,6 +11,41 @@
  */
 
 
+namespace App\Models{use AllowDynamicProperties;use Eloquent;use Illuminate\Database\Eloquent\Builder;use Illuminate\Support\Carbon;use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;use Spatie\MediaLibrary\MediaCollections\Models\Media;
+/**
+ *
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $url
+ * @property string $title
+ * @property string $sentence
+ * @property string $description
+ * @property bool $is_paid
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @method static Builder|App free()
+ * @method static Builder|App newModelQuery()
+ * @method static Builder|App newQuery()
+ * @method static Builder|App paid()
+ * @method static Builder|App query()
+ * @method static Builder|App whereCreatedAt($value)
+ * @method static Builder|App whereDescription($value)
+ * @method static Builder|App whereId($value)
+ * @method static Builder|App whereIsPaid($value)
+ * @method static Builder|App whereSentence($value)
+ * @method static Builder|App whereTitle($value)
+ * @method static Builder|App whereUpdatedAt($value)
+ * @method static Builder|App whereUrl($value)
+ * @method static Builder|App whereUserId($value)
+ * @mixin Eloquent
+ */
+	#[AllowDynamicProperties]
+	class IdeHelperApp {}
+}
+
 namespace App\Models{use AllowDynamicProperties;use Eloquent;use Illuminate\Database\Eloquent\Builder;use Illuminate\Support\Carbon;
 /**
  *
@@ -51,6 +86,8 @@ namespace App\Models{use AllowDynamicProperties;use Database\Factories\UserFacto
  * @property string|null $pm_last_four
  * @property string|null $trial_ends_at
  * @property-read AppTemplate|null $appTemplate
+ * @property-read Collection<int, App> $apps
+ * @property-read int|null $apps_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read Collection<int, Subscription> $subscriptions
