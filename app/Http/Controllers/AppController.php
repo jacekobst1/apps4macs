@@ -74,28 +74,25 @@ class AppController extends Controller
             ]);
         }
 
-        if (!$request->is_paid) {
-            // todo display this as toast and redirect to subscription page
-            session()->flash('validationMessage', 'You can have only one free app without subscription');
-
-            return to_route('new-app.specify-if-paid');
-        }
-
         if ($request->is_paid) {
             // return subscription page
         }
+
+        // todo display this as toast and redirect to subscription page
+        session()->flash('validationMessage', 'You can have only one free app without subscription');
+
+        return to_route('new-app.specify-if-paid');
     }
 
     /**
-     * @throws FileDoesNotExist
      * @throws FileIsTooBig
+     * @throws FileDoesNotExist
      */
     public function postSubmit(PostSubmitRequest $request): RedirectResponse
     {
         if (!Auth::user()->canCreateApp($request->is_paid)) {
             // return subscription page
         }
-
 
         /** @var App $app */
         $app = Auth::user()->apps()->create([
@@ -106,7 +103,7 @@ class AppController extends Controller
             'is_paid' => $request->is_paid,
         ]);
 
-        $app->addMedia($request->logo)->toMediaCollection('logo');
+        $app->addLogo($request->logo);
 
         return to_route('homepage');
     }

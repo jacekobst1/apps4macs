@@ -6,8 +6,9 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
-    defineProps({
-        auth: Object
+    const props = defineProps({
+        auth: Object,
+        apps: []
     })
 
     const name = ref('');
@@ -43,6 +44,16 @@
                     <span class="font-bold">Application name</span>
                 </div>
                 <span>Short brief of what this application does and how it will simplify life of every user...</span>
+            </div>
+        </div>
+
+        <div v-for="app in apps" :key="app.id" class="grid grid-cols-4 gap-4 h-32">
+            <div class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
+                <div class="flex items-center mb-2">
+                    <img :src="app.logo_url" alt="logo" class="w-10 h-10 mr-5"/>
+                    <span class="font-bold">{{ app.name }}</span>
+                </div>
+                <span>{{ app.sentence }}</span>
             </div>
         </div>
     </StandardLayout>
