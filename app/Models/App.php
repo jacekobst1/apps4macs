@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,10 @@ class App extends Model implements HasMedia
         'is_paid',
     ];
 
+    protected $appends = [
+        'logo_url',
+    ];
+
     /**
      * Scopes
      */
@@ -44,6 +49,15 @@ class App extends Model implements HasMedia
         $query->whereIsPaid(false);
     }
 
+    /**
+     * Mutators & Accessors
+     */
+    protected function logoUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->getFirstMediaUrl('logo'),
+        );
+    }
 
     /**
      * Spatie media-library

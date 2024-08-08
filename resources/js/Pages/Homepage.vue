@@ -6,10 +6,10 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
-    const props = defineProps({
-        auth: Object,
-        apps: []
-    })
+    const props = defineProps<{
+        auth: Record<string, any>;
+        apps: Array<App.Resources.AppResource>;
+    }>();
 
     const name = ref('');
 </script>
@@ -47,14 +47,15 @@
             </div>
         </div>
 
-        <div v-for="app in apps" :key="app.id" class="grid grid-cols-4 gap-4 h-32">
-            <div class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
+        <div v-for="(app, index) in apps" :key="index" class="grid grid-cols-4 gap-4 h-32">
+            <a :href="app.url"
+               class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
                 <div class="flex items-center mb-2">
                     <img :src="app.logo_url" alt="logo" class="w-10 h-10 mr-5"/>
-                    <span class="font-bold">{{ app.name }}</span>
+                    <span class="font-bold">{{ app.title }}</span>
                 </div>
                 <span>{{ app.sentence }}</span>
-            </div>
+            </a>
         </div>
     </StandardLayout>
 </template>
