@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\MagicLoginController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -38,6 +39,16 @@ Route::get('/sign-up', [AppController::class, 'getSignup']);
 Route::post('/sign-up', [AppController::class, 'postSignup']);
 
 Route::get('/subscription-checkout', [StripeController::class, 'getSubscriptionCheckout']);
+
+if (app()->isLocal()) {
+    Route::get(
+        '/dev/login',
+        function () {
+            \Illuminate\Support\Facades\Auth::login(User::whereEmail('jacekobst1@gmail.com')->first());
+            to_route('homepage');
+        }
+    );
+}
 
 Route::get('/login', [MagicLoginController::class, 'getMagicLogin'])->name('login');
 Route::post('/login', [MagicLoginController::class, 'postMagicLogin']);
