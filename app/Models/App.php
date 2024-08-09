@@ -37,6 +37,14 @@ class App extends Model implements HasMedia
     ];
 
     /**
+     * Relations
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * Scopes
      */
     public function scopePaid(Builder $query): void

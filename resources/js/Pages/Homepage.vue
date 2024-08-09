@@ -45,7 +45,7 @@
             >
                 <div class="flex items-center">
                     <img
-                        :src="app.logo_url !== '' ? app.logo_url : 'https://img.freepik.com/darmowe-wektory/logo-instagrama_1199-122.jpg'"
+                        :src="app.logo_url"
                         alt="logo"
                         class="mr-2 w-[70px] aspect-square rounded-xl"
                     />

@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\App;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $apps = App::factory(30)->for(User::factory())->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $apps->each(function (App $app) {
+            $app->addMediaFromUrl('https://img.freepik.com/darmowe-wektory/logo-instagrama_1199-122.jpg')
+                ->toMediaCollection('logo');
+        });
     }
 }
