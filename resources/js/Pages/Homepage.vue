@@ -2,7 +2,6 @@
     import {Head, Link} from '@inertiajs/vue3';
     import {ref} from "vue";
     import BaseInput from "@/Components/form/BaseInput.vue";
-    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
@@ -18,7 +17,7 @@
     <Head title="List"/>
 
     <StandardLayout>
-        <div class="mb-10 pt-6">
+        <div class="mb-8 pt-6">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
             <h1 class="text-2xl font-bold mb-4">apps4macs 👨‍💻</h1>
             <div class="text-lg mb-4 text-gray-500">
@@ -33,29 +32,39 @@
             </Link>
         </div>
 
-        <div class="flex justify-center mb-10">
+        <div class="flex justify-center mb-8">
             <BaseInput v-model="name" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
-        <div class="grid grid-cols-4 gap-4 h-32">
-            <div class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
-                <div class="flex items-center mb-2">
-                    <ApplicationLogo width="50px" height="50px" class="mr-5"/>
-                    <span class="font-bold">Application name</span>
+        <div class="grid grid-cols-3 gap-4">
+            <a
+                v-for="(app, index) in apps"
+                :key="index"
+                :href="app.url"
+                class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1"
+            >
+                <div class="flex items-center">
+                    <img
+                        :src="app.logo_url !== '' ? app.logo_url : 'https://img.freepik.com/darmowe-wektory/logo-instagrama_1199-122.jpg'"
+                        alt="logo"
+                        class="mr-2 w-[70px] aspect-square rounded-xl"
+                    />
+                    <div class="self-start ml-1">
+                        <p class="font-bold text-lg mb-1 text-gray-800">{{ app.title }}</p>
+                        <p class="text-xs text-gray-700 truncate-lines">{{ app.sentence }}</p>
+                    </div>
                 </div>
-                <span>Short brief of what this application does and how it will simplify life of every user...</span>
-            </div>
-        </div>
-
-        <div v-for="(app, index) in apps" :key="index" class="grid grid-cols-4 gap-4 h-32">
-            <a :href="app.url"
-               class="bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1">
-                <div class="flex items-center mb-2">
-                    <img :src="app.logo_url" alt="logo" class="w-10 h-10 mr-5"/>
-                    <span class="font-bold">{{ app.title }}</span>
-                </div>
-                <span>{{ app.sentence }}</span>
             </a>
         </div>
     </StandardLayout>
 </template>
+
+<style scoped>
+    .truncate-lines {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limits to 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
