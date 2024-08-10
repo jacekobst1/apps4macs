@@ -11,6 +11,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 final class AppResource extends Data
 {
     public function __construct(
+        public string $id,
         public string $url,
         public string $title,
         public string $sentence,

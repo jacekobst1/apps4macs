@@ -21,6 +21,7 @@ declare namespace App.Http.Requests {
 }
 declare namespace App.Resources {
     export type AppResource = {
+        id: string;
         url: string;
         title: string;
         sentence: string;

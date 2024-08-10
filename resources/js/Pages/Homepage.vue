@@ -1,16 +1,43 @@
 <script setup lang="ts">
     import {Head, Link} from '@inertiajs/vue3';
     import {ref} from "vue";
+    import {useIntersectionObserver} from '@vueuse/core'
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
+    import axios from "axios";
 
     const props = defineProps<{
         auth: Record<string, any>;
-        apps: Array<App.Resources.AppResource>;
+        apps: CursorPagination<App.Resources.AppResource>;
     }>();
 
-    const name = ref('');
+    const search = ref('');
+    const last = ref(null);
+    const noMoreItems = ref(false);
+
+    const loadData = () => {
+        axios.get(`${props.apps.path}?cursor=${props.apps.next_cursor}`).then((response: any) => {
+            props.apps.data = [...props.apps.data, ...response.data.data];
+            props.apps.next_cursor = response.data.next_cursor;
+            props.apps.next_page_url = response.data.next_page_url;
+            props.apps.path = response.data.path;
+            props.apps.prev_cursor = response.data.prev_cursor;
+            props.apps.prev_page_url = response.data.prev_page_url;
+
+            if (!response.data.next_cursor) {
+                noMoreItems.value = true;
+                stop();
+            }
+        });
+    };
+
+    const {stop} = useIntersectionObserver(
+        last,
+        ([{isIntersecting}]) => {
+            if (isIntersecting) setTimeout(loadData, 200)
+        }
+    );
 </script>
 
 <template>
@@ -33,12 +60,12 @@
         </div>
 
         <div class="flex justify-center mb-8">
-            <BaseInput v-model="name" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
+            <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3 gap-4 pb-10">
             <a
-                v-for="(app, index) in apps"
+                v-for="(app, index) in apps.data"
                 :key="index"
                 :href="app.url"
                 class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1"
@@ -56,6 +83,7 @@
                 </div>
             </a>
         </div>
+        <div ref="last" class="-translate-y-32"></div>
     </StandardLayout>
 </template>
 
