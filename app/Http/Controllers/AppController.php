@@ -112,6 +112,10 @@ class AppController extends Controller
 
         $app->addLogo($request->logo);
 
+        if ($request->url === Auth::user()->appTemplate->url) {
+            Auth::user()->appTemplate->delete();
+        }
+
         return to_route('homepage');
     }
 }
