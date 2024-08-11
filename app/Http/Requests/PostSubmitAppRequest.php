@@ -11,7 +11,7 @@ use Spatie\LaravelData\Attributes\Validation\File;
 use Spatie\LaravelData\Attributes\Validation\Url;
 use Spatie\LaravelData\Data;
 
-final class PostSubmitRequest extends Data
+final class PostSubmitAppRequest extends Data
 {
     public function __construct(
         #[Bail, Url, ActiveUrl]

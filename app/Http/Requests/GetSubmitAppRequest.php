@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Spatie\LaravelData\Data;
 
-final class GetSubmitRequest extends Data
+final class GetSubmitAppRequest extends Data
 {
     public function __construct(
         public readonly bool $is_paid,
