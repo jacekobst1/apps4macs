@@ -68,9 +68,16 @@ class AppController extends Controller
 
     public function getSubmit(GetSubmitRequest $request): Response|RedirectResponse|null
     {
-        if (Auth::user()->canCreateApp($request->is_paid)) {
+        $user = Auth::user();
+
+        $templateUrl = $user->hasAnyApp()
+            ? null
+            : $user->appTemplate->url;
+
+        if ($user->canCreateApp($request->is_paid)) {
             return Inertia::render('SubmitApp', [
                 'is_paid' => $request->is_paid,
+                'template_url' => $templateUrl,
             ]);
         }
 

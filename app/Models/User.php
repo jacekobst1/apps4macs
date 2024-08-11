@@ -92,6 +92,11 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
     /**
      * Custom methods
      */
+    public function hasAnyApp(): bool
+    {
+        return $this->apps()->count() > 0;
+    }
+
     public function getNumberOfAllowedApps(): int
     {
         return 1;
@@ -100,7 +105,7 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
     public function canCreateApp(bool $isPaid): bool
     {
         return true; // todo remove
-        
+
         $userCanCreateNewApp = true; // $user->numberOfAllowedApps > $user->paidApps->count()
         if (!$isPaid) {
             return $this->apps()->free()->count() === 0;

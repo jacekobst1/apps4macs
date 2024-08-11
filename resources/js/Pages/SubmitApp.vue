@@ -8,7 +8,8 @@
     import BaseLabel from "@/Components/form/BaseLabel.vue";
 
     const props = defineProps<{
-        is_paid: boolean
+        is_paid: boolean,
+        template_url: string | null,
     }>();
 
     const form = useForm<{
@@ -26,6 +27,10 @@
         description: null,
         is_paid: props.is_paid,
     })
+
+    if (props.template_url) {
+        form.url = props.template_url;
+    }
 
     function submit() {
         form.post('/new-app/submit');
