@@ -15,6 +15,7 @@
     const search = ref('');
     const last = ref(null);
     const noMoreItems = ref(false);
+    const isLoading = ref(false);
 
     const loadData = () => {
         axios.get(`${props.apps.path}?cursor=${props.apps.next_cursor}`).then((response: any) => {
@@ -25,17 +26,22 @@
             props.apps.prev_cursor = response.data.prev_cursor;
             props.apps.prev_page_url = response.data.prev_page_url;
 
+            isLoading.value = false;
+
             if (!response.data.next_cursor) {
                 noMoreItems.value = true;
                 stop();
             }
-        });
+        })
     };
 
     const {stop} = useIntersectionObserver(
         last,
         ([{isIntersecting}]) => {
-            if (isIntersecting) setTimeout(loadData, 200)
+            if (isIntersecting) {
+                isLoading.value = true;
+                setTimeout(loadData, 250)
+            }
         }
     );
 </script>
@@ -63,7 +69,7 @@
             <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
-        <div class="grid grid-cols-3 gap-4 pb-10">
+        <div class="grid grid-cols-3 gap-4 mb-10">
             <a
                 v-for="(app, index) in apps.data"
                 :key="index"
@@ -84,6 +90,9 @@
             </a>
         </div>
         <div ref="last" class="-translate-y-32"></div>
+        <div v-if="isLoading" class="mb-10 text-center font-bold">
+            <span>Loading more items...</span>
+        </div>
     </StandardLayout>
 </template>
 
