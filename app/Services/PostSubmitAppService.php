@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\AppStatus;
 use App\Http\Requests\PostSubmitAppRequest;
 use App\Models\App;
 use Illuminate\Http\RedirectResponse;
@@ -38,6 +39,7 @@ final readonly class PostSubmitAppService
     {
         /** @var App $app */
         $app = Auth::user()->apps()->create([
+            'status' => AppStatus::Submitted,
             'url' => $request->url,
             'title' => $request->title,
             'sentence' => $request->sentence,

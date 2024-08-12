@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\AppStatus;
 use App\Models\App;
 use App\Resources\AppResource;
 use Illuminate\Http\Request;
@@ -14,8 +15,7 @@ final readonly class GetHomepageService
 {
     public function handle(Request $request): Response|array
     {
-        $appsModels = App::with('media')->cursorPaginate(24);
-        $apps = AppResource::collect($appsModels)->toArray();
+        $apps = $this->getApps();
 
         if ($request->wantsJson()) {
             return $apps;
@@ -24,5 +24,14 @@ final readonly class GetHomepageService
         return Inertia::render('Homepage', [
             'apps' => $apps,
         ]);
+    }
+
+    private function getApps(): array
+    {
+        $apps = App::with('media')
+            ->where('status', AppStatus::Accepted)
+            ->cursorPaginate(24);
+
+        return AppResource::collect($apps)->toArray();
     }
 }

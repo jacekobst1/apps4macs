@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AppStatus;
 use App\Traits\InteractsWithHashedMedia;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -34,6 +35,10 @@ class App extends Model implements HasMedia
 
     protected $appends = [
         'logo_url',
+    ];
+
+    protected $casts = [
+        'status' => AppStatus::class,
     ];
 
     /**

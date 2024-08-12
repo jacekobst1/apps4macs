@@ -13,11 +13,13 @@ return new class extends Migration {
         Schema::create('apps', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained('users');
+            $table->string('status');
             $table->text('url');
             $table->text('title');
             $table->text('sentence');
             $table->text('description');
             $table->boolean('is_paid');
+            $table->dateTime('verified_at')->nullable();
             $table->timestamps();
         });
     }

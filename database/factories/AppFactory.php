@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppStatus;
 use App\Models\App;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,7 @@ class AppFactory extends Factory
     public function definition(): array
     {
         return [
+            'status' => AppStatus::Accepted,
             'url' => fake()->url(),
             'title' => fake()->streetName(),
             'sentence' => fake()->sentence(),
