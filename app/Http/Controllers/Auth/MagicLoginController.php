@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\PostMagicLoginRequest;
-use App\Mail\LoginLink;
+use App\Mail\LoginLinkMail;
 use App\Models\User;
 use Grosv\LaravelPasswordlessLogin\PasswordlessLogin;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +29,7 @@ final readonly class MagicLoginController
             ->generate();
 
         // TODO change to real email
-        Mail::to('jacekobst1@gmail.com')->queue(new LoginLink($url));
+        Mail::to('jacekobst1@gmail.com')->queue(new LoginLinkMail($url));
 
         return to_route('check-email');
     }

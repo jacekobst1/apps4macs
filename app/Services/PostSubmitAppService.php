@@ -6,9 +6,11 @@ namespace App\Services;
 
 use App\Enums\AppStatus;
 use App\Http\Requests\PostSubmitAppRequest;
+use App\Mail\NewAppSubmittedMail;
 use App\Models\App;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -48,6 +50,8 @@ final readonly class PostSubmitAppService
         ]);
 
         $app->addLogo($request->logo);
+
+        $this->sendMailToAdmin($app);
     }
 
     private function deleteTemplateApp(PostSubmitAppRequest $request): void
@@ -55,5 +59,10 @@ final readonly class PostSubmitAppService
         if ($request->url === Auth::user()->appTemplate->url) {
             Auth::user()->appTemplate->delete();
         }
+    }
+
+    private function sendMailToAdmin(App $app): void
+    {
+        Mail::to(config('env.admin_email'))->queue(new NewAppSubmittedMail($app));
     }
 }
