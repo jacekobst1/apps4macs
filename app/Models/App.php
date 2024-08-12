@@ -25,12 +25,9 @@ class App extends Model implements HasMedia
     use InteractsWithHashedMedia;
 
     protected $fillable = [
-        'url',
-        'logo',
         'title',
         'sentence',
         'description',
-        'is_paid',
     ];
 
     protected $appends = [

@@ -40,14 +40,14 @@ final readonly class PostSubmitAppService
     private function createApp(PostSubmitAppRequest $request): void
     {
         /** @var App $app */
-        $app = Auth::user()->apps()->create([
-            'status' => AppStatus::Submitted,
-            'url' => $request->url,
-            'title' => $request->title,
-            'sentence' => $request->sentence,
-            'description' => $request->description,
-            'is_paid' => $request->is_paid,
-        ]);
+        $app = Auth::user()->apps()->make();
+        $app->status = AppStatus::Submitted;
+        $app->url = $request->url;
+        $app->title = $request->title;
+        $app->sentence = $request->sentence;
+        $app->description = $request->description;
+        $app->is_paid = $request->is_paid;
+        $app->save();
 
         $app->addLogo($request->logo);
 

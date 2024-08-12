@@ -11,21 +11,26 @@
  */
 
 
-namespace App\Models{use AllowDynamicProperties;use Eloquent;use Illuminate\Database\Eloquent\Builder;use Illuminate\Support\Carbon;use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;use Spatie\MediaLibrary\MediaCollections\Models\Media;
+namespace App\Models{use AllowDynamicProperties;use App\Enums\AppStatus;use Database\Factories\AppFactory;use Eloquent;use Illuminate\Database\Eloquent\Builder;use Illuminate\Support\Carbon;use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;use Spatie\MediaLibrary\MediaCollections\Models\Media;
 /**
  *
  *
  * @property string $id
  * @property string $user_id
+ * @property AppStatus $status
  * @property string $url
  * @property string $title
  * @property string $sentence
  * @property string $description
  * @property bool $is_paid
+ * @property string|null $verified_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read mixed $logo_url
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ * @property-read User $user
+ * @method static AppFactory factory($count = null, $state = [])
  * @method static Builder|App free()
  * @method static Builder|App newModelQuery()
  * @method static Builder|App newQuery()
@@ -36,10 +41,12 @@ namespace App\Models{use AllowDynamicProperties;use Eloquent;use Illuminate\Data
  * @method static Builder|App whereId($value)
  * @method static Builder|App whereIsPaid($value)
  * @method static Builder|App whereSentence($value)
+ * @method static Builder|App whereStatus($value)
  * @method static Builder|App whereTitle($value)
  * @method static Builder|App whereUpdatedAt($value)
  * @method static Builder|App whereUrl($value)
  * @method static Builder|App whereUserId($value)
+ * @method static Builder|App whereVerifiedAt($value)
  * @mixin Eloquent
  */
 	#[AllowDynamicProperties]
