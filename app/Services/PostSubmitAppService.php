@@ -28,7 +28,7 @@ final readonly class PostSubmitAppService
 
         $this->createApp($request);
 
-        $this->deleteTemplateApp($request);
+        $this->deleteTemplateAppIfExists($request);
 
         return to_route('homepage');
     }
@@ -54,9 +54,9 @@ final readonly class PostSubmitAppService
         $this->sendMailToAdmin($app);
     }
 
-    private function deleteTemplateApp(PostSubmitAppRequest $request): void
+    private function deleteTemplateAppIfExists(PostSubmitAppRequest $request): void
     {
-        if ($request->url === Auth::user()->appTemplate->url) {
+        if ($request->url === Auth::user()->appTemplate?->url) {
             Auth::user()->appTemplate->delete();
         }
     }
