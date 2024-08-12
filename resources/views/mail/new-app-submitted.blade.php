@@ -6,7 +6,7 @@
     <p>Submitted by: {{ $newApp->user->email }}</p>
     <p>Sentence: {{ $newApp->sentence }}</p>
     <p>Description: {{ $newApp->description }}</p>
-    @component('mail::button', ['url' => 'https://appstore.test/admin'])
+    @component('mail::button', ['url' => 'https://apps4macs.com/admin'])
         Go to admin panel
     @endcomponent
 @endcomponent
