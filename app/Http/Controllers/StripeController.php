@@ -17,8 +17,8 @@ class StripeController extends Controller
             ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
             ->allowPromotionCodes()
             ->checkout([
-                'success_url' => env('APP_URL') . '/dashboard',
-                'cancel_url' => env('APP_URL') . '/submit-app',
+                'success_url' => route('new-app.submit'),
+                'cancel_url' => route('homepage')
             ]);
     }
 }
