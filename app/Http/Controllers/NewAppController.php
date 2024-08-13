@@ -16,7 +16,7 @@ use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
-class AppController extends Controller
+class NewAppController extends Controller
 {
     public function getSignUp(): Response
     {
@@ -33,7 +33,7 @@ class AppController extends Controller
 
     public function getSpecifyIfPaid(): Response
     {
-        return Inertia::render('SpecifyIfPaid');
+        return Inertia::render('NewApp/SpecifyIfPaid');
     }
 
     public function getSubmit(
