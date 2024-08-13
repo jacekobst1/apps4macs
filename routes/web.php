@@ -30,7 +30,7 @@ if (app()->isLocal()) {
         '/dev/login',
         function () {
             \Illuminate\Support\Facades\Auth::login(User::whereEmail('jacekobst1@gmail.com')->first());
-            to_route('homepage');
+            return to_route('homepage');
         }
     );
 }
