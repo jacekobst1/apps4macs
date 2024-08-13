@@ -21,7 +21,7 @@
     <Head title="Specify if paid"/>
 
     <StandardLayout class="pt-0">
-        <div class="min-h-screen flex flex-col justify-center items-center -top-16 relative">
+        <div class="min-h-screen flex flex-col justify-center items-center">
             <h1 class="font-bold text-xl">Is your app paid?</h1>
             <div class="text-gray-400 text-sm mt-3">
                 <p>

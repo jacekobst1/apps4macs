@@ -1,11 +1,11 @@
 <script setup lang="ts">
-    import GuestLayout from "@/Layouts/GuestLayout.vue";
     import {Head, useForm} from "@inertiajs/vue3";
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import BaseTextarea from "@/Components/form/BaseTextarea.vue";
     import BaseLabel from "@/Components/form/BaseLabel.vue";
+    import StandardLayout from "@/Layouts/StandardLayout.vue";
 
     const props = defineProps<{
         is_paid: boolean,
@@ -48,60 +48,62 @@
 <template>
     <Head title="Submit app"/>
 
-    <GuestLayout class="pt-0">
-        <div class="w-fit h-screen self-center flex flex-col justify-center">
-            <div class="w-full mb-6">
-                <h1 class="font-bold text-xl">Create new app!</h1>
-            </div>
-            <form @submit.prevent="submit" class="min-w-96 max-w-lg">
-                <div class="mb-4">
-                    <BaseLabel text="Logo">
-                        <input
-                            @change="handleFileChange"
-                            type="file"
-                            id="logo-file-input"
-                            class="file-input file-input-sm md:file-input-md w-full"
+    <StandardLayout class="pt-0">
+        <div class="min-h-screen flex justify-center items-center">
+            <div>
+                <div class="w-full mb-6">
+                    <h1 class="font-bold text-xl">Create new app!</h1>
+                </div>
+                <form @submit.prevent="submit" class="min-w-96 max-w-lg">
+                    <div class="mb-4">
+                        <BaseLabel text="Logo">
+                            <input
+                                @change="handleFileChange"
+                                type="file"
+                                id="logo-file-input"
+                                class="file-input file-input-sm md:file-input-md w-full"
+                            />
+                        </BaseLabel>
+                        <BaseInputError :text="form.errors?.logo"/>
+                    </div>
+                    <div class="mb-4">
+                        <BaseInput
+                            v-model="form.url"
+                            label="Url"
+                            placeholder="https://super-cool-landing-page.com"
+                            variant="primary"
                         />
-                    </BaseLabel>
-                    <BaseInputError :text="form.errors?.logo"/>
-                </div>
-                <div class="mb-4">
-                    <BaseInput
-                        v-model="form.url"
-                        label="Url"
-                        placeholder="https://super-cool-landing-page.com"
-                        variant="primary"
-                    />
-                    <BaseInputError :text="form.errors?.url"/>
-                </div>
-                <div class="mb-4">
-                    <BaseInput
-                        v-model="form.title"
-                        label="Title"
-                        variant="primary"
-                    />
-                    <BaseInputError :text="form.errors?.title"/>
-                </div>
-                <div class="mb-4">
-                    <BaseInput
-                        v-model="form.sentence"
-                        label="Eye-catching sentence"
-                        variant="primary"
-                    />
-                    <BaseInputError :text="form.errors?.sentence"/>
-                </div>
-                <div class="mb-4">
-                    <BaseTextarea
-                        v-model="form.description"
-                        label="Description"
-                        variant="primary"
-                    />
-                    <BaseInputError :text="form.errors?.description"/>
-                </div>
-                <BaseButton type="submit" class="w-full">Submit</BaseButton>
-            </form>
+                        <BaseInputError :text="form.errors?.url"/>
+                    </div>
+                    <div class="mb-4">
+                        <BaseInput
+                            v-model="form.title"
+                            label="Title"
+                            variant="primary"
+                        />
+                        <BaseInputError :text="form.errors?.title"/>
+                    </div>
+                    <div class="mb-4">
+                        <BaseInput
+                            v-model="form.sentence"
+                            label="Eye-catching sentence"
+                            variant="primary"
+                        />
+                        <BaseInputError :text="form.errors?.sentence"/>
+                    </div>
+                    <div class="mb-4">
+                        <BaseTextarea
+                            v-model="form.description"
+                            label="Description"
+                            variant="primary"
+                        />
+                        <BaseInputError :text="form.errors?.description"/>
+                    </div>
+                    <BaseButton type="submit" class="w-full">Submit</BaseButton>
+                </form>
+            </div>
         </div>
-    </GuestLayout>
+    </StandardLayout>
 </template>
 
 <style scoped>
