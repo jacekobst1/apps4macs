@@ -35,7 +35,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function accept(App $app, Request $request): RedirectResponse
+    public function postAccept(App $app, Request $request): RedirectResponse
     {
         $app->status = AppStatus::Accepted;
         $app->save();
@@ -47,7 +47,7 @@ class AdminController extends Controller
         return to_route('admin.submitted-apps-list');
     }
 
-    public function reject(App $app, Request $request): RedirectResponse
+    public function postReject(App $app, Request $request): RedirectResponse
     {
         $app->status = AppStatus::Rejected;
         $app->save();
