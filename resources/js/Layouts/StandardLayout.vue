@@ -12,10 +12,10 @@
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
-            <div class="container mx-auto flex flex-col sm-justify-center">
+            <div class="container mx-auto flex flex-col sm-justify-center px-4 sm:px-6 lg:px-8">
                 <nav class="border-b border-gray-100">
                     <!-- Primary Navigation Menu -->
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-7xl mx-auto">
                         <div class="flex justify-between h-16">
                             <div class="flex">
                                 <!-- Logo -->
