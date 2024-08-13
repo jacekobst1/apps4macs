@@ -3,7 +3,7 @@
     import {Head, Link} from "@inertiajs/vue3";
 
     defineProps<{
-        submittedApps: Array<App.Resources.AppResource>;
+        apps: Array<App.Resources.AppResource>;
     }>();</script>
 <template>
     <StandardLayout>
@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(app, index) in submittedApps" :key="index">
+                    <tr v-for="(app, index) in apps" :key="index">
                         <th>{{ index + 1 }}</th>
                         <td>{{ app.title }}</td>
                         <td>{{ app.url }}</td>

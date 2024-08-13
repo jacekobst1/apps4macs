@@ -5,7 +5,7 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
 
     const props = defineProps<{
-        submittedApp: App.Resources.AppResource;
+        app: App.Resources.AppResource;
     }>();
 
     const form = useForm({
@@ -13,11 +13,11 @@
     })
 
     function accept() {
-        form.post('/admin/submitted-apps/' + props.submittedApp.id + '/accept');
+        form.post('/admin/submitted-apps/' + props.app.id + '/accept');
     }
 
     function reject() {
-        form.post('/admin/submitted-apps/' + props.submittedApp.id + '/reject');
+        form.post('/admin/submitted-apps/' + props.app.id + '/reject');
     }
 </script>
 <template>
@@ -26,13 +26,13 @@
 
         <div>
             <h1 class="text-2xl font-bold mb-4">Submitted app</h1>
-            <p>Url: {{ submittedApp.url }}</p>
-            <p>User: {{ submittedApp.user?.email }}</p>
-            <p>Created at: {{ submittedApp.created_at }}</p>
+            <p>Url: {{ app.url }}</p>
+            <p>User: {{ app.user?.email }}</p>
+            <p>Created at: {{ app.created_at }}</p>
 
-            <p>Title: {{ submittedApp.title }}</p>
-            <p>Sentence: {{ submittedApp.sentence }}</p>
-            <p>Description: {{ submittedApp.description }}</p>
+            <p>Title: {{ app.title }}</p>
+            <p>Sentence: {{ app.sentence }}</p>
+            <p>Description: {{ app.description }}</p>
 
 
             <div class="mt-20">

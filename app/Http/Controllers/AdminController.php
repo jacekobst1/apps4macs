@@ -16,22 +16,22 @@ class AdminController extends Controller
 {
     public function getSubmittedAppsList(): Response
     {
-        $submittedAppsModels = App::query()
+        $appsModels = App::query()
             ->with('user')
             ->where('status', AppStatus::Submitted)
             ->get();
 
-        $submittedApps = AppResource::collect($submittedAppsModels)->toArray();
+        $apps = AppResource::collect($appsModels)->toArray();
 
         return Inertia::render('Admin/SubmittedAppsList', [
-            'submittedApps' => $submittedApps,
+            'apps' => $apps,
         ]);
     }
 
     public function getSubmittedApp(App $app): Response
     {
         return Inertia::render('Admin/SubmittedApp', [
-            'submittedApp' => AppResource::from($app),
+            'app' => AppResource::from($app),
         ]);
     }
 

@@ -7,6 +7,10 @@ use App\Http\Controllers\StripeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__ . '/auth.php';
+require __DIR__ . '/magic-login.php';
+require __DIR__ . '/admin.php';
+
 Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 
 Route::get('/sign-up', [NewAppController::class, 'getSignup']);
@@ -23,10 +27,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('my-apps', [MyAppsController::class, 'getIndex'])->name('my-apps.index');
 });
-
-require __DIR__ . '/auth.php';
-require __DIR__ . '/magic-login.php';
-require __DIR__ . '/admin.php';
 
 if (app()->isLocal()) {
     Route::get(
