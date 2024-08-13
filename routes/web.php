@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\MagicLoginController;
 use App\Http\Controllers\HomepageController;
@@ -62,5 +63,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
+Route::prefix('/admin')->group(function () {
+    Route::get('/submitted-apps', [AdminController::class, 'getSubmittedAppsList'])->name('admin.submitted-apps-list');
+    Route::get('/submitted-apps/{app}', [AdminController::class, 'getSubmittedApp']);
+    Route::post('/submitted-apps/{app}/accept', [AdminController::class, 'accept']);
+    Route::post('/submitted-apps/{app}/reject', [AdminController::class, 'reject']);
+});
 
 require __DIR__ . '/auth.php';

@@ -1,5 +1,8 @@
+declare namespace App.Enums {
+    export type AppStatus = "submitted" | "accepted" | "rejected";
+}
 declare namespace App.Http.Requests {
-    export type GetSubmitRequest = {
+    export type GetSubmitAppRequest = {
         is_paid: boolean;
     };
     export type PostMagicLoginRequest = {
@@ -10,7 +13,7 @@ declare namespace App.Http.Requests {
         email: string;
         is_paid: boolean;
     };
-    export type PostSubmitRequest = {
+    export type PostSubmitAppRequest = {
         url: string;
         logo: any;
         title: string;
@@ -27,5 +30,10 @@ declare namespace App.Resources {
         sentence: string;
         description: string;
         logo_url: string;
+        user: App.Resources.UserResource | null;
+        created_at: string | null;
+    };
+    export type UserResource = {
+        email: string;
     };
 }
