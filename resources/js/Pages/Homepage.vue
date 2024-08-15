@@ -71,8 +71,8 @@
 
         <div class="grid grid-cols-3 gap-4 mb-10">
             <a
-                v-for="(app, index) in apps.data"
-                :key="index"
+                v-for="app in apps.data"
+                :key="app.id"
                 :href="app.url"
                 class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1"
             >

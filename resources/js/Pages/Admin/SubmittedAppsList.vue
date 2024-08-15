@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(app, index) in apps" :key="index">
+                    <tr v-for="(app, index) in apps" :key="app.id">
                         <th>{{ index + 1 }}</th>
                         <td>{{ app.title }}</td>
                         <td>{{ app.url }}</td>
