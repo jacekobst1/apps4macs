@@ -29,6 +29,7 @@ declare namespace App.Resources {
         title: string;
         sentence: string;
         description: string;
+        is_paid: boolean;
         logo_url: string;
         user: App.Resources.UserResource | null;
         created_at: string | null;

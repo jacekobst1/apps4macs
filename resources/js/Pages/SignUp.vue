@@ -3,7 +3,6 @@
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
-    import Tooltip from "@/Components/form/BaseTooltip.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
@@ -52,10 +51,8 @@
                         label="Is this a paid app?"
                         variant="primary"
                         class="mb-2"
-                    >
-                        <Tooltip
-                            text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."/>
-                    </BaseCheckbox>
+                        tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."
+                    />
                     <BaseButton type="submit" class="w-full">Submit</BaseButton>
                 </form>
             </div>

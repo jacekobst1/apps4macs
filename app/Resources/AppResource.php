@@ -16,6 +16,7 @@ final class AppResource extends Data
         public string $title,
         public string $sentence,
         public string $description,
+        public bool $is_paid,
         public string $logo_url,
         public ?UserResource $user,
         public ?string $created_at,

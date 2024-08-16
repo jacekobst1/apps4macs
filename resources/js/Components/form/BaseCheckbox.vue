@@ -6,12 +6,14 @@
         variant?: "default" | "primary";
         size?: 'xs' | 'sm' | 'md' | 'lg';
         label?: string;
+        tooltipText?: string;
     }
 
     const props = withDefaults(defineProps<Props>(), {
         variant: 'default',
         size: 'md',
         label: '',
+        tooltipText: '',
     });
 
     const model = defineModel()
@@ -42,7 +44,7 @@
 
 <template>
     <div v-if="label" class="flex">
-        <BaseLabel :text="label">
+        <BaseLabel :text="label" :tooltip-text="tooltipText">
             <input
                 type="checkbox"
                 v-model="model"
@@ -50,7 +52,6 @@
                 :class="inputClasses"
             />
         </BaseLabel>
-        <slot/>
     </div>
 
     <div v-else class="flex">

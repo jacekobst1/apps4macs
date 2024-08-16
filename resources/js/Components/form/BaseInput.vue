@@ -2,12 +2,17 @@
     import {computed} from "vue";
     import BaseLabel from "@/Components/form/BaseLabel.vue";
 
+    defineOptions({
+        inheritAttrs: false,
+    })
+
     interface Props {
         variant?: "default" | "primary";
         size?: 'xs' | 'sm' | 'md' | 'lg';
         placeholder?: string;
         label?: string;
         error?: string;
+        tooltipText?: string;
     }
 
     const props = withDefaults(defineProps<Props>(), {
@@ -16,6 +21,7 @@
         placeholder: '',
         label: '',
         error: '',
+        tooltipText: '',
     });
 
     const model = defineModel()
@@ -46,7 +52,7 @@
 
 <template>
     <template v-if="label">
-        <BaseLabel :text="label">
+        <BaseLabel :text="label" :tooltip-text="tooltipText">
             <input
                 v-model="model"
                 v-bind="$attrs"
