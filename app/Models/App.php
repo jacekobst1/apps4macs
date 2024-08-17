@@ -59,6 +59,18 @@ class App extends Model implements HasMedia
         $query->whereIsPaid(false);
     }
 
+    public function scopeActive(Builder $query): void
+    {
+        $query->whereStatus(AppStatus::Accepted);
+    }
+
+    public function scopeSubmittedOrActive(Builder $query): void
+    {
+        $query
+            ->whereStatus(AppStatus::Submitted)
+            ->orWhere('status', AppStatus::Accepted);
+    }
+
     /**
      * Mutators & Accessors
      */
