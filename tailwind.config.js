@@ -29,6 +29,8 @@ export default {
                 fantasy: {
                     ...require("daisyui/src/theming/themes")["fantasy"],
                     primary: "#212124",
+                    error: '#94001e',
+                    info: '#002280',
                 },
             },
         ],

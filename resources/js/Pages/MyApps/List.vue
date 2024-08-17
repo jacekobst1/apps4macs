@@ -60,7 +60,11 @@
                         </td>
                         <th>
                             <Link :href="'/my-apps/' + app.id + '/edit'">
-                                <BaseButton variant="ghost">Edit</BaseButton>
+                                <div class="flex flex-col">
+                                    <BaseButton variant="outline-info" size="sm" class="mb-1 w-full">Edit
+                                    </BaseButton>
+                                    <BaseButton variant="outline-error" size="sm" class="w-full">Delete</BaseButton>
+                                </div>
                             </Link>
                         </th>
                     </tr>

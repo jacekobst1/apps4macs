@@ -104,7 +104,9 @@
                         />
                     </div>
                     <div class="flex justify-end">
-                        <BaseButton type="button" variant="default" class="mr-4 w-20">Cancel</BaseButton>
+                        <BaseButton @click="$back" type="button" variant="default" class="mr-4 w-20">
+                            Cancel
+                        </BaseButton>
                         <BaseButton type="submit" class="w-20">Save</BaseButton>
                     </div>
                 </form>
