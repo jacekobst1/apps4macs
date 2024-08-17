@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('my-apps', [MyAppsController::class, 'getIndex'])->name('my-apps.index');
     Route::get('my-apps/{app}/edit', [MyAppsController::class, 'getEdit'])->name('my-apps.edit');
     Route::put('my-apps/{app}', [MyAppsController::class, 'putUpdate']);
+    Route::delete('my-apps/{app}', [MyAppsController::class, 'delete']);
 });
 
 if (app()->isLocal()) {

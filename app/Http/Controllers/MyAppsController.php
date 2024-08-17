@@ -49,4 +49,11 @@ final readonly class MyAppsController
 
         return to_route('my-apps.index');
     }
+
+    public function delete(App $app): RedirectResponse
+    {
+        $app->delete();
+
+        return to_route('my-apps.index');
+    }
 }

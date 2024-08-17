@@ -1,11 +1,17 @@
 <script setup lang="ts">
     import StandardLayout from "@/Layouts/StandardLayout.vue";
-    import {Head, Link} from "@inertiajs/vue3";
+    import {Head, Link, useForm} from "@inertiajs/vue3";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
 
     defineProps<{
         apps: Array<App.Resources.AppResource>;
     }>();
+
+    const deleteForm = useForm({});
+
+    function deleteApp(id: string) {
+        deleteForm.delete(`/my-apps/${id}`);
+    }
 </script>
 
 <template>
@@ -59,13 +65,22 @@
                             <span>{{ app.created_at ? new Date(app.created_at).toLocaleDateString() : '' }}</span>
                         </td>
                         <th>
-                            <Link :href="'/my-apps/' + app.id + '/edit'">
-                                <div class="flex flex-col">
-                                    <BaseButton variant="outline-info" size="sm" class="mb-1 w-full">Edit
+                            <div class="flex flex-col">
+                                <Link :href="'/my-apps/' + app.id + '/edit'">
+                                    <BaseButton variant="outline-info" size="sm" class="mb-1 w-full">
+                                        Edit
                                     </BaseButton>
-                                    <BaseButton variant="outline-error" size="sm" class="w-full">Delete</BaseButton>
-                                </div>
-                            </Link>
+                                </Link>
+                                <BaseButton
+                                    @click="deleteApp(app.id)"
+                                    :disabled="deleteForm.processing"
+                                    variant="outline-error"
+                                    size="sm"
+                                    class="w-full"
+                                >
+                                    Delete
+                                </BaseButton>
+                            </div>
                         </th>
                     </tr>
                     </tbody>
