@@ -37,7 +37,7 @@
                         />
                         <BaseInputError :text="errors?.email"/>
                     </div>
-                    <BaseButton type="submit" class="w-full">Send me login link</BaseButton>
+                    <BaseButton :disabled="form.processing" type="submit" class="w-full">Send me login link</BaseButton>
                 </form>
             </div>
         </div>

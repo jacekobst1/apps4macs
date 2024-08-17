@@ -99,7 +99,7 @@
                         />
                         <BaseInputError :text="form.errors?.description"/>
                     </div>
-                    <BaseButton type="submit" class="w-full">Submit</BaseButton>
+                    <BaseButton :disabled="form.processing" type="submit" class="w-full">Submit</BaseButton>
                 </form>
             </div>
         </div>
