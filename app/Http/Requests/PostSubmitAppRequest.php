@@ -7,7 +7,10 @@ namespace App\Http\Requests;
 use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Attributes\Validation\ActiveUrl;
 use Spatie\LaravelData\Attributes\Validation\Bail;
+use Spatie\LaravelData\Attributes\Validation\Dimensions;
 use Spatie\LaravelData\Attributes\Validation\File;
+use Spatie\LaravelData\Attributes\Validation\Image;
+use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\Url;
 use Spatie\LaravelData\Data;
 
@@ -17,7 +20,7 @@ final class PostSubmitAppRequest extends Data
         #[Bail, Url, ActiveUrl]
         public readonly string $url,
 
-        #[File]
+        #[File, Image, Max(512), Dimensions(ratio: 1)]
         public readonly UploadedFile $logo,
 
         public readonly string $title,

@@ -6,6 +6,7 @@ use App\Models\App;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,10 +14,11 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     * @throws FileCannotBeAdded
      */
     public function run(): void
     {
-        $apps = App::factory(200)->for(User::factory())->create();
+        $apps = App::factory(100)->for(User::factory())->create();
 
         $exampleLogos = [
             'https://img.freepik.com/darmowe-wektory/logo-instagrama_1199-122.jpg',
