@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-    import {Head, router} from "@inertiajs/vue3";
+    import {Head, useForm} from "@inertiajs/vue3";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
 
@@ -10,10 +10,13 @@
         },
     }>();
 
+    const form = useForm({
+        is_paid: 0,
+    });
+
     function makeRequest(isPaid: boolean) {
-        router.get('/new-app/submit', {
-            is_paid: isPaid ? 1 : 0,
-        });
+        form.is_paid = isPaid ? 1 : 0;
+        form.get('/new-app/submit');
     }
 </script>
 
@@ -35,10 +38,10 @@
                 </p>
             </div>
             <div class="flex space-x-20 mt-10">
-                <BaseButton @click="makeRequest(true)" class="w-32 shadow-2xl">
+                <BaseButton @click="makeRequest(true)" :disabled=form.processing class="w-32 shadow-2xl">
                     Yes
                 </BaseButton>
-                <BaseButton @click="makeRequest(false)" class="w-32 shadow-2xl">
+                <BaseButton @click="makeRequest(false)" :disabled="form.processing" class="w-32 shadow-2xl">
                     No
                 </BaseButton>
             </div>
