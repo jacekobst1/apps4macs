@@ -6,6 +6,7 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import axios from "axios";
+    import AppTile from "@/Components/AppTile.vue";
 
     const props = defineProps<{
         auth: Record<string, any>;
@@ -69,25 +70,10 @@
             <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
-        <div class="grid grid-cols-3 gap-4 mb-10">
-            <a
-                v-for="app in apps.data"
-                :key="app.id"
-                :href="app.url"
-                class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1"
-            >
-                <div class="flex items-center">
-                    <img
-                        :src="app.logo_url"
-                        alt="logo"
-                        class="mr-2 w-[70px] aspect-square rounded-xl"
-                    />
-                    <div class="self-start ml-1">
-                        <p class="font-bold text-lg mb-1 text-gray-800">{{ app.title }}</p>
-                        <p class="text-xs text-gray-700 truncate-lines">{{ app.sentence }}</p>
-                    </div>
-                </div>
-            </a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mb-10">
+            <template v-for="app in apps.data" :key="app.id">
+                <AppTile :app="app"/>
+            </template>
         </div>
         <div ref="last" class="-translate-y-32"></div>
         <div v-if="isLoading" class="mb-10 text-center font-bold">

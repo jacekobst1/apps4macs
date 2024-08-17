@@ -54,7 +54,7 @@
                 <div class="w-full mb-6">
                     <h1 class="font-bold text-xl">Create new app!</h1>
                 </div>
-                <form @submit.prevent="submit" class="min-w-96 max-w-lg">
+                <form @submit.prevent="submit" class="sm:min-w-96 max-w-lg">
                     <div class="mb-4">
                         <BaseLabel text="Logo">
                             <input

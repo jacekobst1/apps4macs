@@ -7,6 +7,10 @@
     import {Link} from '@inertiajs/vue3';
 
     const showingNavigationDropdown = ref(false);
+
+    function hideDropdown() {
+        showingNavigationDropdown.value = false;
+    }
 </script>
 
 <template>
@@ -20,7 +24,7 @@
                             <div class="flex">
                                 <!-- Logo -->
                                 <div class="shrink-0 flex items-center">
-                                    <Link href='/'>
+                                    <Link :href="route('homepage')">
                                         <ApplicationLogo
                                             class="block h-9 w-auto fill-current text-gray-800"
                                         />
@@ -32,9 +36,8 @@
                                 <!-- Settings Dropdown -->
                                 <Link
                                     v-if="!$page.props.auth?.user"
-                                    href="/login"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition
-                                        hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                    :href="route('login')"
+                                    class="text-black transition hover:text-black/70"
                                 >
                                     Log in
                                 </Link>
@@ -76,7 +79,16 @@
                             </div>
 
                             <!-- Hamburger -->
-                            <div class="-me-2 flex items-center sm:hidden">
+                            <Link
+                                v-if="!$page.props.auth?.user"
+                                :href="route('login')"
+                                class="sm:hidden self-center text-black transition hover:text-black/70"
+
+                            >
+                                Log in
+                            </Link>
+
+                            <div v-else class="-me-2 flex items-center sm:hidden">
                                 <button
                                     @click="showingNavigationDropdown = !showingNavigationDropdown"
                                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -121,16 +133,10 @@
 
                         <!-- Responsive Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
-                            <div class="px-4">
-                                <div class="font-medium text-base text-gray-800">
-                                    {{ $page.props.auth.user?.name }}
-                                </div>
-                                <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user?.email }}</div>
-                            </div>
-
                             <div class="mt-3 space-y-1">
-                                <!--                                <ResponsiveNavLink :href="route('profile.edit')"> Profile</ResponsiveNavLink>-->
-                                <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                                <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
+                                <ResponsiveNavLink @click="hideDropdown" :href="route('logout')" method="post"
+                                                   as="button">
                                     Log Out
                                 </ResponsiveNavLink>
                             </div>
