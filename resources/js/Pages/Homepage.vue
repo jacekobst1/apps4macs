@@ -53,7 +53,6 @@
     <StandardLayout>
         <div class="mb-8 pt-6">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
-            <h1 class="text-lg sm:text-2xl font-bold mb-2 sm:md-4">apps4macs</h1>
             <div class="text-sm sm:text-lg mb-4 text-gray-500">
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
