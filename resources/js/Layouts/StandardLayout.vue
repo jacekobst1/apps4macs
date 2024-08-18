@@ -135,6 +135,7 @@
                         <!-- Responsive Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
                             <div class="mt-3 space-y-1">
+                                <span class="pl-4 text-gray-400">{{ $page.props.auth.user?.name }}</span>
                                 <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
                                 <ResponsiveNavLink @click="hideDropdown" :href="route('logout')" method="post"
                                                    as="button">
