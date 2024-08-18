@@ -11,9 +11,16 @@ enum PriceType: string
 
     public function getStripeId(): string
     {
+        if (app()->isLocal()) {
+            return match ($this) {
+                self::Monthly => 'price_1PihkO2K1g0VVPPwg6aerZjo',
+                self::Yearly => 'price_1Pihkw2K1g0VVPPwfAmgBakm',
+            };
+        }
+
         return match ($this) {
-            self::Monthly => 'abc',
-            self::Yearly => 'def',
+            self::Monthly => 'todo',
+            self::Yearly => 'todo',
         };
     }
 }
