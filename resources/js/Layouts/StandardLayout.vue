@@ -17,7 +17,7 @@
     <div>
         <div class="min-h-screen bg-gray-100">
             <div class="container mx-auto flex flex-col sm-justify-center px-4 sm:px-6 lg:px-8">
-                <nav class="border-b border-gray-100">
+                <nav class="border-b border-gray-100 z-50">
                     <!-- Primary Navigation Menu -->
                     <div>
                         <div class="flex justify-between h-16">

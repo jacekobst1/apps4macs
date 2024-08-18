@@ -20,8 +20,8 @@
 <template>
     <Head title="Sign up"/>
 
-    <StandardLayout class="pt-0">
-        <div class="min-h-screen flex justify-center items-center">
+    <StandardLayout>
+        <div class="min-h-screen flex justify-center items-center -top-16 relative">
             <div>
                 <div class="w-full mb-6">
                     <h1 class="font-bold text-xl">Submit your app</h1>
