@@ -53,7 +53,34 @@
                         class="mb-2"
                         tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."
                     />
-                    <BaseButton :disabled="form.processing" type="submit" class="w-full">Submit</BaseButton>
+                    <div v-if="form.is_paid" class="flex flex-col sm:flex-row items-center">
+                        <div class="card bg-base-100 border border-black w-full sm:w-64 mb-4 sm:mb-0 sm:mr-4">
+                            <div class="card-body">
+                                <h2 class="card-title mb-2 text-lg">Monthly plan</h2>
+                                <div class="flex items-end mb-2">
+                                    <span class="text font-semibold mr-1">7.99$</span>
+                                    <span class="text-sm text-gray-500"> /mo</span>
+                                </div>
+                                <div class="card-actions justify-end">
+                                    <BaseButton size="sm">Buy now</BaseButton>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-base-100 border border-black w-full sm:w-64">
+                            <div class="card-body">
+                                <h2 class="card-title mb-2 text-lg">Yearly plan</h2>
+                                <div class="flex items-end">
+                                    <span class="text font-semibold mr-1">59.99$</span>
+                                    <span class="text-sm text-gray-500"> /yr</span>
+                                </div>
+                                <span class="text-blue-400 -mt-3 mb-2">Save 30% annually</span>
+                                <div class="card-actions justify-end">
+                                    <BaseButton size="sm">Buy now</BaseButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <BaseButton v-else :disabled="form.processing" type="submit" class="w-full">Submit</BaseButton>
                 </form>
             </div>
         </div>
