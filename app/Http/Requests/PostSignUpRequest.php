@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Enums\PriceType;
 use Spatie\LaravelData\Attributes\Validation\ActiveUrl;
 use Spatie\LaravelData\Attributes\Validation\Email;
 use Spatie\LaravelData\Attributes\Validation\Unique;
@@ -20,6 +21,8 @@ final class PostSignUpRequest extends Data
         public readonly string $email,
 
         public readonly bool $is_paid,
+
+        public readonly ?PriceType $price_type,
     ) {
     }
 

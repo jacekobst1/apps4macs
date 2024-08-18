@@ -6,13 +6,30 @@
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
 
-    const form = useForm({
-        url: null,
-        email: null,
+    const form = useForm<{
+        url: string,
+        email: string,
+        is_paid: boolean,
+        price_type?: 'monthly' | 'yearly',
+    }>({
+        url: '',
+        email: '',
         is_paid: false,
-    })
+        price_type: undefined,
+    });
 
-    function makeRequest() {
+    function postFree() {
+        form.price_type = undefined;
+        form.post('/sign-up')
+    }
+
+    function postPaidMonthly() {
+        form.price_type = 'monthly';
+        form.post('/sign-up')
+    }
+
+    function postPaidYearly() {
+        form.price_type = 'yearly';
         form.post('/sign-up')
     }
 </script>
@@ -26,7 +43,7 @@
                 <div class="w-full mb-6">
                     <h1 class="font-bold text-xl">Submit your app</h1>
                 </div>
-                <form @submit.prevent="makeRequest" class="min-w-80 max-w-2xl">
+                <form class="min-w-80 max-w-2xl">
                     <div class="mb-4">
                         <BaseInput
                             v-model="form.url"
@@ -93,7 +110,9 @@
                                     </label>
                                 </div>
                                 <div class="card-actions mt-auto justify-center">
-                                    <BaseButton class="w-full">Buy now</BaseButton>
+                                    <BaseButton @click="postPaidMonthly" :disabled="form.processing" class="w-full">Buy
+                                        now
+                                    </BaseButton>
                                     <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>
                             </div>
@@ -146,14 +165,16 @@
                                     </label>
                                 </div>
                                 <div class="card-actions mt-auto justify-center">
-                                    <BaseButton class="w-full">Buy now</BaseButton>
+                                    <BaseButton @click="postPaidYearly" :disabled="form.processing" class="w-full">Buy
+                                        now
+                                    </BaseButton>
                                     <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <BaseButton v-else :disabled="form.processing" type="submit" class="w-full">
+                    <BaseButton v-else @click="postFree" :disabled="form.processing" class="w-full">
                         Submit
                     </BaseButton>
                 </form>

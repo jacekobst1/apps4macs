@@ -27,7 +27,6 @@ final readonly class PostSignUpService
         $this->createAppTemplate($user, $request);
         $this->login($user);
 
-        // TODO choose a subscription type on frontend first and send it in $request
         if ($request->is_paid) {
             $checkout = $this->initStripeCheckout($request);
 
@@ -69,7 +68,7 @@ final readonly class PostSignUpService
     private function initStripeCheckout(PostSignUpRequest $request): Checkout
     {
         return Auth::user()
-            ->newSubscription('prod_QZrTafUcZ8hyD6', 'price_1PihkO2K1g0VVPPwg6aerZjo')
+            ->newSubscription('prod_QZrTafUcZ8hyD6', $request->price_type->getStripeId())
             ->allowPromotionCodes()
             ->checkout([
                 'success_url' => route('new-app.submit', ['is_paid' => $request->is_paid]),
