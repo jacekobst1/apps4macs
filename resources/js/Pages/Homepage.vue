@@ -53,8 +53,8 @@
     <StandardLayout>
         <div class="mb-8 pt-6">
             <!--            <ApplicationLogo width="150px" height="150px"/>-->
-            <h1 class="text-2xl font-bold mb-4">apps4macs 👨‍💻</h1>
-            <div class="text-lg mb-4 text-gray-500">
+            <h1 class="text-lg sm:text-2xl font-bold mb-2 sm:md-4">apps4macs 👨‍💻</h1>
+            <div class="text-sm sm:text-lg mb-4 text-gray-500">
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
@@ -70,9 +70,9 @@
             <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6 mb-10">
             <template v-for="app in apps.data" :key="app.id">
-                <AppTile :app="app"/>
+                <AppTile :app="app" class="justify-self-center"/>
             </template>
         </div>
         <div ref="last" class="-translate-y-32"></div>

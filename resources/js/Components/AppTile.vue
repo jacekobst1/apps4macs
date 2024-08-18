@@ -7,7 +7,7 @@
 <template>
     <a
         :href="app.url"
-        class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1 min-w-72 max-w-80"
+        class="flex items-center bg-base-100 rounded-xl shadow-xl p-2 cursor-pointer border border-primary border-1 w-72 2xl:w-80"
     >
         <div class="flex items-center">
             <img
