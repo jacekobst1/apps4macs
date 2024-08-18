@@ -21,12 +21,12 @@
     <Head title="Sign up"/>
 
     <StandardLayout>
-        <div class="min-h-screen flex justify-center items-center -top-16 relative">
+        <div class="min-h-screen flex justify-center items-center">
             <div>
                 <div class="w-full mb-6">
                     <h1 class="font-bold text-xl">Submit your app</h1>
                 </div>
-                <form @submit.prevent="makeRequest" class="min-w-80 max-w-lg">
+                <form @submit.prevent="makeRequest" class="min-w-80 max-w-2xl">
                     <div class="mb-4">
                         <BaseInput
                             v-model="form.url"
@@ -53,34 +53,109 @@
                         class="mb-2"
                         tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."
                     />
-                    <div v-if="form.is_paid" class="flex flex-col sm:flex-row items-center">
-                        <div class="card bg-base-100 border border-black w-full sm:w-64 mb-4 sm:mb-0 sm:mr-4">
-                            <div class="card-body">
+                    <div v-if="form.is_paid" class="flex flex-col md:flex-row items-stretch">
+                        <div
+                            class="card flex flex-col w-full bg-base-100 border border-black sm:w-96 mb-4 md:mb-0 md:mr-4">
+                            <div class="card-body flex-grow flex flex-col">
                                 <h2 class="card-title mb-2 text-lg">Monthly plan</h2>
-                                <div class="flex items-end mb-2">
-                                    <span class="text font-semibold mr-1">7.99$</span>
-                                    <span class="text-sm text-gray-500"> /mo</span>
+                                <div class="flex items-end mb-8">
+                                    <span class="text font-semibold mr-1">8.99$</span>
+                                    <span class="text-sm text-gray-500"> /month</span>
                                 </div>
-                                <div class="card-actions justify-end">
-                                    <BaseButton size="sm">Buy now</BaseButton>
+                                <div class="mb-4 flex flex-col">
+                                    <span class="text-xs font-bold">What are you getting?</span>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Increased visibility and awareness</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Targeted audience</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Showed at top at least once a month</span>
+                                    </label>
+                                </div>
+                                <div class="card-actions mt-auto justify-center">
+                                    <BaseButton class="w-full">Buy now</BaseButton>
+                                    <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-base-100 border border-black w-full sm:w-64">
-                            <div class="card-body">
+                        <div class="card flex flex-col w-full bg-base-100 border border-black sm:w-96">
+                            <div class="card-body flex-grow flex flex-col">
                                 <h2 class="card-title mb-2 text-lg">Yearly plan</h2>
                                 <div class="flex items-end">
-                                    <span class="text font-semibold mr-1">59.99$</span>
-                                    <span class="text-sm text-gray-500"> /yr</span>
+                                    <span class="text font-semibold mr-1">69.99$</span>
+                                    <span class="text-sm text-gray-500"> /year</span>
                                 </div>
-                                <span class="text-blue-400 -mt-3 mb-2">Save 30% annually</span>
-                                <div class="card-actions justify-end">
-                                    <BaseButton size="sm">Buy now</BaseButton>
+                                <span class="text-blue-400 -mt-3 mb-4">Save 35% annually</span>
+                                <div class="mb-4 flex flex-col">
+                                    <span class="text-xs font-bold">What are you getting?</span>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Increased visibility and awareness</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Targeted audience</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Showed at top at least once a month</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked
+                                            disabled
+                                            class="checkbox checkbox-xs mr-1 !opacity-100"
+                                        />
+                                        <span class="text-xs">Most affordable price</span>
+                                    </label>
+                                </div>
+                                <div class="card-actions mt-auto justify-center">
+                                    <BaseButton class="w-full">Buy now</BaseButton>
+                                    <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <BaseButton v-else :disabled="form.processing" type="submit" class="w-full">Submit</BaseButton>
+
+                    <BaseButton v-else :disabled="form.processing" type="submit" class="w-full">
+                        Submit
+                    </BaseButton>
                 </form>
             </div>
         </div>
