@@ -19,7 +19,7 @@
             <div class="container mx-auto flex flex-col sm-justify-center px-4 sm:px-6 lg:px-8">
                 <nav class="border-b border-gray-100">
                     <!-- Primary Navigation Menu -->
-                    <div class="max-w-7xl mx-auto">
+                    <div>
                         <div class="flex justify-between h-16">
                             <div class="flex">
                                 <!-- Logo -->
@@ -145,8 +145,8 @@
                 </nav>
 
                 <!-- Page Heading -->
-                <header class="shadow" v-if="$slots.header">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="shadow rounded-xl mb-5" v-if="$slots.header">
+                    <div class="py-4 px-4 sm:px-6 lg:px-8">
                         <slot name="header"/>
                     </div>
                 </header>
