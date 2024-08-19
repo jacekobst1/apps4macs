@@ -16,8 +16,6 @@ Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
 Route::get('/sign-up', [NewAppController::class, 'getSignup']);
 Route::post('/sign-up', [NewAppController::class, 'postSignup']);
 
-Route::get('/subscription-checkout', [StripeController::class, 'getSubscriptionCheckout']);
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('new-app')->group(function () {
         Route::get('/specify-if-paid', [NewAppController::class, 'getSpecifyIfPaid'])->name('new-app.specify-if-paid');

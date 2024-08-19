@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Http\Requests\PostSignUpRequest;
 use App\Models\User;
+use App\Services\Internal\StripeService;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +14,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
-use Laravel\Cashier\Checkout;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 final readonly class PostSignUpService
 {
+    public function __construct(private StripeService $stripeService)
+    {
+    }
+
     /**
      * @throws Exception
      */
@@ -28,7 +32,7 @@ final readonly class PostSignUpService
         $this->login($user);
 
         if ($request->is_paid) {
-            $checkout = $this->initStripeCheckout($request);
+            $checkout = $this->stripeService->initStripeCheckout($request->price_type, $request->is_paid);
 
             return Inertia::location($checkout->toArray()['url']);
         }
@@ -60,19 +64,5 @@ final readonly class PostSignUpService
     private function login(User $user): void
     {
         Auth::login($user);
-    }
-
-    /**
-     * @throws Exception
-     */
-    private function initStripeCheckout(PostSignUpRequest $request): Checkout
-    {
-        return Auth::user()
-            ->newSubscription('prod_QZrTafUcZ8hyD6', $request->price_type->getStripeId())
-            ->allowPromotionCodes()
-            ->checkout([
-                'success_url' => route('new-app.submit', ['is_paid' => $request->is_paid]),
-                'cancel_url' => route('homepage'),
-            ]);
     }
 }
