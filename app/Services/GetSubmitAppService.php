@@ -16,20 +16,13 @@ final readonly class GetSubmitAppService
     {
         $user = Auth::user();
 
+        if (!$user->canCreateApp($request->is_paid)) {
+            return to_route('new-app.choose-plan');
+        }
+
         $templateUrl = $this->getTemplateAppUrl();
 
-        if ($user->canCreateApp($request->is_paid)) {
-            return $this->renderSubmitPage($request, $templateUrl);
-        }
-
-        if ($request->is_paid) {
-            // return subscription page
-        }
-
-        // todo display this as toast and redirect to subscription page
-        session()->flash('validationMessage', 'You can have only one free app without subscription');
-
-        return to_route('new-app.specify-if-paid');
+        return $this->renderSubmitPage($request, $templateUrl);
     }
 
     private function getTemplateAppUrl(): ?string

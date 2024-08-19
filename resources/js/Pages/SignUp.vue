@@ -106,12 +106,12 @@
                                             disabled
                                             class="checkbox checkbox-xs mr-1 !opacity-100"
                                         />
-                                        <span class="text-xs">Showed at top at least once a month</span>
+                                        <span class="text-xs">Shown at top at least once a month</span>
                                     </label>
                                 </div>
                                 <div class="card-actions mt-auto justify-center">
-                                    <BaseButton @click="postPaidMonthly" :disabled="form.processing" class="w-full">Buy
-                                        now
+                                    <BaseButton @click="postPaidMonthly" :disabled="form.processing" class="w-full">
+                                        Buy now
                                     </BaseButton>
                                     <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>
@@ -152,7 +152,7 @@
                                             disabled
                                             class="checkbox checkbox-xs mr-1 !opacity-100"
                                         />
-                                        <span class="text-xs">Showed at top at least once a month</span>
+                                        <span class="text-xs">Shown at top at least once a month</span>
                                     </label>
                                     <label>
                                         <input
@@ -165,8 +165,8 @@
                                     </label>
                                 </div>
                                 <div class="card-actions mt-auto justify-center">
-                                    <BaseButton @click="postPaidYearly" :disabled="form.processing" class="w-full">Buy
-                                        now
+                                    <BaseButton @click="postPaidYearly" :disabled="form.processing" class="w-full">
+                                        Buy now
                                     </BaseButton>
                                     <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
                                 </div>

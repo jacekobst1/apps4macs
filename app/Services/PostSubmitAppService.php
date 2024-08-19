@@ -23,7 +23,7 @@ final readonly class PostSubmitAppService
     public function handle(PostSubmitAppRequest $request): RedirectResponse
     {
         if (!Auth::user()->canCreateApp($request->is_paid)) {
-            // return subscription page
+            return to_route('new-app.choose-plan', ['is_paid' => $request->is_paid]);
         }
 
         $this->createApp($request);
