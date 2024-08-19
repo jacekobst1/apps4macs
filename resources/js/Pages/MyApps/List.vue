@@ -37,6 +37,8 @@
                 <thead>
                 <tr>
                     <th>Tile</th>
+                    <th>Is paid</th>
+                    <th>Status</th>
                     <th>Submitted at</th>
                     <th>Actions</th>
                 </tr>
@@ -45,6 +47,12 @@
                 <tr v-for="app in apps" :key="app.id">
                     <td>
                         <AppTile :app="app" class="!shadow-none"/>
+                    </td>
+                    <td>
+                        <span>{{ app.is_paid ? 'Yes' : 'No' }}</span>
+                    </td>
+                    <td class="first-letter:capitalize">
+                        <span>{{ app.status }}</span>
                     </td>
                     <td>
                         <span>{{ app.created_at ? new Date(app.created_at).toLocaleDateString() : '' }}</span>

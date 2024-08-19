@@ -1,5 +1,6 @@
 declare namespace App.Enums {
     export type AppStatus = "submitted" | "accepted" | "rejected";
+    export type PriceType = "monthly" | "yearly";
 }
 declare namespace App.Http.Requests {
     export type GetSubmitAppRequest = {
@@ -12,6 +13,7 @@ declare namespace App.Http.Requests {
         url: string;
         email: string;
         is_paid: boolean;
+        price_type: App.Enums.PriceType | null;
     };
     export type PostSubmitAppRequest = {
         url: string;
@@ -21,10 +23,17 @@ declare namespace App.Http.Requests {
         description: string;
         is_paid: boolean;
     };
+    export type PutUpdateAppRequest = {
+        logo: any | null;
+        title: string;
+        sentence: string;
+        description: string;
+    };
 }
 declare namespace App.Resources {
     export type AppResource = {
         id: string;
+        status: App.Enums.AppStatus;
         url: string;
         title: string;
         sentence: string;
