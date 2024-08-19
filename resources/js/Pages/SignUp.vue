@@ -5,6 +5,7 @@
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
+    import Pricing from "@/Components/Pricing.vue";
 
     const form = useForm<{
         url: string,
@@ -70,109 +71,13 @@
                         class="mb-2"
                         tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."
                     />
-                    <div v-if="form.is_paid" class="flex flex-col md:flex-row items-stretch">
-                        <div
-                            class="card flex flex-col w-full bg-base-100 border border-black sm:w-96 mb-4 md:mb-0 md:mr-4">
-                            <div class="card-body flex-grow flex flex-col">
-                                <h2 class="card-title mb-2 text-lg">Monthly plan</h2>
-                                <div class="flex items-end mb-8">
-                                    <span class="text font-semibold mr-1">8.99$</span>
-                                    <span class="text-sm text-gray-500"> /month</span>
-                                </div>
-                                <div class="mb-4 flex flex-col">
-                                    <span class="text-xs font-bold">What are you getting?</span>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Increased visibility and awareness</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Targeted audience</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Shown at top at least once a month</span>
-                                    </label>
-                                </div>
-                                <div class="card-actions mt-auto justify-center">
-                                    <BaseButton @click="postPaidMonthly" :disabled="form.processing" class="w-full">
-                                        Buy now
-                                    </BaseButton>
-                                    <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card flex flex-col w-full bg-base-100 border border-black sm:w-96">
-                            <div class="card-body flex-grow flex flex-col">
-                                <h2 class="card-title mb-2 text-lg">Yearly plan</h2>
-                                <div class="flex items-end">
-                                    <span class="text font-semibold mr-1">69.99$</span>
-                                    <span class="text-sm text-gray-500"> /year</span>
-                                </div>
-                                <span class="text-blue-400 -mt-3 mb-4">Save 35% annually</span>
-                                <div class="mb-4 flex flex-col">
-                                    <span class="text-xs font-bold">What are you getting?</span>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Increased visibility and awareness</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Targeted audience</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Shown at top at least once a month</span>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="checkbox"
-                                            checked
-                                            disabled
-                                            class="checkbox checkbox-xs mr-1 !opacity-100"
-                                        />
-                                        <span class="text-xs">Most affordable price</span>
-                                    </label>
-                                </div>
-                                <div class="card-actions mt-auto justify-center">
-                                    <BaseButton @click="postPaidYearly" :disabled="form.processing" class="w-full">
-                                        Buy now
-                                    </BaseButton>
-                                    <span class="text-xs text-gray-500 -mt-1">Cancel anytime</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <Pricing
+                        v-if="form.is_paid"
+                        :post-paid-monthly="postPaidMonthly"
+                        :post-paid-yearly="postPaidYearly"
+                        :processing="form.processing"
+                    />
 
                     <BaseButton v-else @click="postFree" :disabled="form.processing" class="w-full">
                         Submit
