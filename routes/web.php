@@ -29,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('my-apps/{app}/edit', [MyAppsController::class, 'getEdit'])->name('my-apps.edit');
     Route::put('my-apps/{app}', [MyAppsController::class, 'putUpdate']);
     Route::delete('my-apps/{app}', [MyAppsController::class, 'delete']);
+
+    Route::get('/billing-portal', [StripeController::class, 'getBillingPortal'])->name('billing-portal');
 });
 
 if (app()->isLocal()) {

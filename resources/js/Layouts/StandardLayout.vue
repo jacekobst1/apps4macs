@@ -71,6 +71,7 @@
 
                                         <template #content>
                                             <DropdownLink :href="route('my-apps.index')">My apps</DropdownLink>
+                                            <DropdownLink :href="route('billing-portal')">Billing</DropdownLink>
                                             <DropdownLink :href="route('logout')" method="post" as="button">
                                                 Log Out
                                             </DropdownLink>
@@ -137,6 +138,7 @@
                             <div class="mt-3 space-y-1">
                                 <span class="pl-4 text-gray-400">{{ $page.props.auth.user?.name }}</span>
                                 <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('billing-portal')">Billing</ResponsiveNavLink>
                                 <ResponsiveNavLink @click="hideDropdown" :href="route('logout')" method="post"
                                                    as="button">
                                     Log Out
