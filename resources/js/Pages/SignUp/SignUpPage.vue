@@ -5,7 +5,7 @@
     import BaseCheckbox from "@/Components/form/BaseCheckbox.vue";
     import BaseInputError from "@/Components/form/BaseInputError.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
-    import Pricing from "@/Components/Pricing.vue";
+    import Pricing from "@/Components/shared/Pricing.vue";
 
     const form = useForm<{
         url: string,

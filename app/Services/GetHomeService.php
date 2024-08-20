@@ -21,7 +21,7 @@ final readonly class GetHomeService
             return $apps;
         }
 
-        return Inertia::render('HomePage', [
+        return Inertia::render('Home/HomePage', [
             'apps' => $apps,
         ]);
     }

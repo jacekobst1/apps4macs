@@ -6,7 +6,7 @@
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import axios from "axios";
-    import AppTile from "@/Components/AppTile.vue";
+    import AppTile from "@/Components/shared/AppTile.vue";
 
     const props = defineProps<{
         auth: Record<string, any>;

@@ -13,7 +13,7 @@ class SignUpController extends Controller
 {
     public function getSignUp(): Response
     {
-        return Inertia::render('SignUpPage');
+        return Inertia::render('SignUp/SignUpPage');
     }
 
     /**

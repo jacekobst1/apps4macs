@@ -2,7 +2,7 @@
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import {Head, Link, useForm} from "@inertiajs/vue3";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
-    import AppTile from "@/Components/AppTile.vue";
+    import AppTile from "@/Components/shared/AppTile.vue";
 
     defineProps<{
         apps: Array<App.Resources.AppResource>;

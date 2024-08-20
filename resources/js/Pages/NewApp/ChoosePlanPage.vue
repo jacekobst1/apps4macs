@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import {Head, useForm} from "@inertiajs/vue3";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
-    import Pricing from "@/Components/Pricing.vue";
+    import Pricing from "@/Components/shared/Pricing.vue";
 
     const props = defineProps<{
         is_paid: boolean,
