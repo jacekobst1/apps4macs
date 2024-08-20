@@ -8,7 +8,7 @@ class RedirectMailsLocally
 {
     public function handle(MessageSending $event): void
     {
-        if (app()->isLocal()) {
+        if (!app()->isProduction()) {
             $event->message->to(config('env.admin_email'));
         }
     }
