@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyAppsController;
 use App\Http\Controllers\NewAppController;
+use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\StripeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -13,8 +14,8 @@ require __DIR__ . '/admin.php';
 
 Route::get('/', [HomeController::class, 'getHome'])->name('home');
 
-Route::get('/sign-up', [NewAppController::class, 'getSignup']);
-Route::post('/sign-up', [NewAppController::class, 'postSignup']);
+Route::get('/sign-up', [SignUpController::class, 'getSignUp']);
+Route::post('/sign-up', [SignUpController::class, 'postSignUp']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('new-app')->group(function () {
