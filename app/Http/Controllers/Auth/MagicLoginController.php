@@ -28,8 +28,7 @@ final readonly class MagicLoginController
             ->setRedirectUrl('/')
             ->generate();
 
-        // TODO change to real email
-        Mail::to('jacekobst1@gmail.com')->queue(new LoginLinkMail($url));
+        Mail::to($request->email)->queue(new LoginLinkMail($url));
 
         return to_route('check-email');
     }

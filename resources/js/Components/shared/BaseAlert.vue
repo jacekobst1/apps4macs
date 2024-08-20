@@ -1,11 +1,7 @@
 <script setup lang="ts">
-    interface Props {
+    defineProps<{
         text?: string
-    }
-
-    // todo add multiple variants of different alerts
-
-    const props = defineProps<Props>();
+    }>();
 </script>
 
 <template>

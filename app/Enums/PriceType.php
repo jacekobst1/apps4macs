@@ -19,8 +19,8 @@ enum PriceType: string
         }
 
         return match ($this) {
-            self::Monthly => 'todo',
-            self::Yearly => 'todo',
+            self::Monthly => 'price_1Pignj2K1g0VVPPwAULjCHcd',
+            self::Yearly => 'price_1PignK2K1g0VVPPwx3wqmity',
         };
     }
 }
