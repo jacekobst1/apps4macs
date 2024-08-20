@@ -1,60 +1,60 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, watch } from 'vue';
+    import {computed, onMounted, onUnmounted, watch} from 'vue';
 
-const props = withDefaults(
-    defineProps<{
-        show?: boolean;
-        maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-        closeable?: boolean;
-    }>(),
-    {
-        show: false,
-        maxWidth: '2xl',
-        closeable: true,
-    }
-);
-
-const emit = defineEmits(['close']);
-
-watch(
-    () => props.show,
-    () => {
-        if (props.show) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'visible';
+    const props = withDefaults(
+        defineProps<{
+            show?: boolean;
+            maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+            closeable?: boolean;
+        }>(),
+        {
+            show: false,
+            maxWidth: '2xl',
+            closeable: true,
         }
-    }
-);
+    );
 
-const close = () => {
-    if (props.closeable) {
-        emit('close');
-    }
-};
+    const emit = defineEmits(['close']);
 
-const closeOnEscape = (e: KeyboardEvent) => {
-    if (e.key === 'Escape' && props.show) {
-        close();
-    }
-};
+    watch(
+        () => props.show,
+        () => {
+            if (props.show) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'visible';
+            }
+        }
+    );
 
-onMounted(() => document.addEventListener('keydown', closeOnEscape));
+    const close = () => {
+        if (props.closeable) {
+            emit('close');
+        }
+    };
 
-onUnmounted(() => {
-    document.removeEventListener('keydown', closeOnEscape);
-    document.body.style.overflow = 'visible';
-});
+    const closeOnEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && props.show) {
+            close();
+        }
+    };
 
-const maxWidthClass = computed(() => {
-    return {
-        sm: 'sm:max-w-sm',
-        md: 'sm:max-w-md',
-        lg: 'sm:max-w-lg',
-        xl: 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
-    }[props.maxWidth];
-});
+    onMounted(() => document.addEventListener('keydown', closeOnEscape));
+
+    onUnmounted(() => {
+        document.removeEventListener('keydown', closeOnEscape);
+        document.body.style.overflow = 'visible';
+    });
+
+    const maxWidthClass = computed(() => {
+        return {
+            sm: 'sm:max-w-sm',
+            md: 'sm:max-w-md',
+            lg: 'sm:max-w-lg',
+            xl: 'sm:max-w-xl',
+            '2xl': 'sm:max-w-2xl',
+        }[props.maxWidth];
+    });
 </script>
 
 <template>
@@ -70,7 +70,7 @@ const maxWidthClass = computed(() => {
                     leave-to-class="opacity-0"
                 >
                     <div v-show="show" class="fixed inset-0 transform transition-all" @click="close">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75" />
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"/>
                     </div>
                 </Transition>
 
@@ -87,7 +87,7 @@ const maxWidthClass = computed(() => {
                         class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto"
                         :class="maxWidthClass"
                     >
-                        <slot v-if="show" />
+                        <slot v-if="show"/>
                     </div>
                 </Transition>
             </div>

@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+    import Checkbox from '@/Components/breeze/Checkbox.vue';
+    import GuestLayout from '@/Layouts/GuestLayout.vue';
+    import InputError from '@/Components/breeze/InputError.vue';
+    import InputLabel from '@/Components/breeze/InputLabel.vue';
+    import PrimaryButton from '@/Components/breeze/PrimaryButton.vue';
+    import TextInput from '@/Components/breeze/TextInput.vue';
+    import {Head, Link, useForm} from '@inertiajs/vue3';
 
-defineProps<{
-    canResetPassword?: boolean;
-    status?: string;
-}>();
+    defineProps<{
+        canResetPassword?: boolean;
+        status?: string;
+    }>();
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => {
-            form.reset('password');
-        },
+    const form = useForm({
+        email: '',
+        password: '',
+        remember: false,
     });
-};
+
+    const submit = () => {
+        form.post(route('login'), {
+            onFinish: () => {
+                form.reset('password');
+            },
+        });
+    };
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head title="Log in"/>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -37,7 +37,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email"/>
 
                 <TextInput
                     id="email"
@@ -49,11 +49,11 @@ const submit = () => {
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2" :message="form.errors.email"/>
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Password"/>
 
                 <TextInput
                     id="password"
@@ -64,12 +64,12 @@ const submit = () => {
                     autocomplete="current-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError class="mt-2" :message="form.errors.password"/>
             </div>
 
             <div class="block mt-4">
                 <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
+                    <Checkbox name="remember" v-model:checked="form.remember"/>
                     <span class="ms-2 text-sm text-gray-600">Remember me</span>
                 </label>
             </div>

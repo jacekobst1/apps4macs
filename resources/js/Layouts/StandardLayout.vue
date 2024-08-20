@@ -1,8 +1,8 @@
 <script setup lang="ts">
     import {ref} from 'vue';
-    import Dropdown from '@/Components/Dropdown.vue';
-    import DropdownLink from '@/Components/DropdownLink.vue';
-    import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+    import Dropdown from '@/Components/breeze/Dropdown.vue';
+    import DropdownLink from '@/Components/breeze/DropdownLink.vue';
+    import ResponsiveNavLink from '@/Components/breeze/ResponsiveNavLink.vue';
     import {Link} from '@inertiajs/vue3';
 
     const showingNavigationDropdown = ref(false);
