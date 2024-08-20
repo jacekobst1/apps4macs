@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-final readonly class GetHomepageService
+final readonly class GetHomeService
 {
     public function handle(Request $request): Response|array
     {
@@ -21,7 +21,7 @@ final readonly class GetHomepageService
             return $apps;
         }
 
-        return Inertia::render('Homepage', [
+        return Inertia::render('HomePage', [
             'apps' => $apps,
         ]);
     }

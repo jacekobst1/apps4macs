@@ -23,7 +23,7 @@ final readonly class StripeService
             ->allowPromotionCodes()
             ->checkout([
                 'success_url' => route('new-app.submit', ['is_paid' => $isPaid]),
-                'cancel_url' => route('homepage'),
+                'cancel_url' => route('home'),
             ]);
     }
 }

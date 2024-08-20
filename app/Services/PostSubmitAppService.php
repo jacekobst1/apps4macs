@@ -30,7 +30,7 @@ final readonly class PostSubmitAppService
 
         $this->deleteTemplateAppIfExists($request);
 
-        return to_route('homepage');
+        return to_route('home');
     }
 
     /**

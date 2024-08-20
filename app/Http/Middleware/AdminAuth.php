@@ -18,6 +18,6 @@ class AdminAuth
             return $next($request);
         }
 
-        return to_route('homepage');
+        return to_route('home');
     }
 }

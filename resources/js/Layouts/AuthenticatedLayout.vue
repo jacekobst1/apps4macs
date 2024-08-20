@@ -20,7 +20,7 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('homepage')">
+                                <Link :href="route('home')">
                                     <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     />
@@ -29,8 +29,8 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('homepage')" :active="route().current('homepage')">
-                                    Homepage
+                                <NavLink :href="route('home')" :active="route().current('home')">
+                                    Home
                                 </NavLink>
                             </div>
                         </div>
@@ -112,8 +112,8 @@
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('homepage')" :active="route().current('homepage')">
-                            Homepage
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            Home
                         </ResponsiveNavLink>
                     </div>
 

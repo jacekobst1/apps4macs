@@ -23,7 +23,7 @@
                             <div class="flex">
                                 <!-- Logo -->
                                 <div class="shrink-0 flex items-center">
-                                    <Link :href="route('homepage')">
+                                    <Link :href="route('home')">
                                         <span class="text-2xl mr-2">👨‍💻</span>
                                         <span class="text-lg font-semibold">apps4macs</span>
                                         <!--                                        <ApplicationLogo-->

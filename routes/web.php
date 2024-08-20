@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyAppsController;
 use App\Http\Controllers\NewAppController;
 use App\Http\Controllers\StripeController;
@@ -11,7 +11,7 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/magic-login.php';
 require __DIR__ . '/admin.php';
 
-Route::get('/', [HomepageController::class, 'getHomepage'])->name('homepage');
+Route::get('/', [HomeController::class, 'getHome'])->name('home');
 
 Route::get('/sign-up', [NewAppController::class, 'getSignup']);
 Route::post('/sign-up', [NewAppController::class, 'postSignup']);
@@ -38,7 +38,7 @@ if (app()->isLocal()) {
         '/dev/login',
         function () {
             \Illuminate\Support\Facades\Auth::login(User::whereEmail('jacekobst1@gmail.com')->first());
-            return to_route('homepage');
+            return to_route('home');
         }
     );
 }
