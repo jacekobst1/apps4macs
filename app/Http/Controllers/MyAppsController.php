@@ -19,14 +19,14 @@ final readonly class MyAppsController
     {
         $apps = Auth::user()->apps;
 
-        return Inertia::render('MyApps/ListPage', [
+        return Inertia::render('MyApps/MyAppsPage', [
             'apps' => $apps,
         ]);
     }
 
     public function getEdit(App $app): Response
     {
-        return Inertia::render('MyApps/EditPage', [
+        return Inertia::render('MyApps/EditMyAppPage', [
             'app' => $app,
         ]);
     }
