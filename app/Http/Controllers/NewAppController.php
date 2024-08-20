@@ -23,7 +23,7 @@ class NewAppController extends Controller
 {
     public function getSignUp(): Response
     {
-        return Inertia::render('SignUp');
+        return Inertia::render('SignUpPage');
     }
 
     /**
@@ -36,12 +36,12 @@ class NewAppController extends Controller
 
     public function getSpecifyIfPaid(): Response
     {
-        return Inertia::render('NewApp/SpecifyIfPaid');
+        return Inertia::render('NewApp/SpecifyIfPaidPage');
     }
 
     public function getChoosePlan(): Response
     {
-        return Inertia::render('NewApp/ChoosePlan');
+        return Inertia::render('NewApp/ChoosePlanPage');
     }
 
     /**

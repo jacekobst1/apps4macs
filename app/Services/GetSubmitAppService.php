@@ -34,7 +34,7 @@ final readonly class GetSubmitAppService
 
     private function renderSubmitPage(GetSubmitAppRequest $request, ?string $templateUrl): Response
     {
-        return Inertia::render('NewApp/SubmitApp', [
+        return Inertia::render('NewApp/SubmitAppPage', [
             'is_paid' => $request->is_paid,
             'template_url' => $templateUrl,
         ]);
