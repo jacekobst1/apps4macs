@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'flash' => [
-                'validationMessage' => fn() => $request->session()->get('validationMessage')
+                'alertSuccess' => fn() => $request->session()->get('alertSuccess')
             ],
         ];
     }
