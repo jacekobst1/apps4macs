@@ -5,7 +5,7 @@ import {createApp, DefineComponent, h} from 'vue';
 import {createInertiaApp} from '@inertiajs/vue3';
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
-import {registerIcons} from "@/plugins";
+import {registerIcons, registerSweetalert2} from "@/plugins";
 import locationBack from "@/plugins/locationBack";
 
 const appName = import.meta.env.VITE_APP_NAME || 'apps4macs';
@@ -17,6 +17,7 @@ createInertiaApp({
         const app = createApp({render: () => h(App, props)});
 
         registerIcons(app);
+        registerSweetalert2(app);
 
         app
             .use(plugin)
