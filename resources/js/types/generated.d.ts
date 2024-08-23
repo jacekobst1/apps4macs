@@ -6,6 +6,10 @@ declare namespace App.Http.Requests {
     export type GetSubmitAppRequest = {
         is_paid: boolean;
     };
+    export type PostChoosePlanRequest = {
+        is_paid: boolean;
+        price_type: App.Enums.PriceType | null;
+    };
     export type PostMagicLoginRequest = {
         email: string;
     };
