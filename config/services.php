@@ -42,4 +42,7 @@ return [
         ],
     ],
 
+    'horizon' => [
+        'token' => env('HORIZON_TOKEN')
+    ]
 ];
