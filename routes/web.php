@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyAppsController;
 use App\Http\Controllers\NewAppController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\StripeController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/magic-login.php';
+require __DIR__ . '/dev.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/magic-login.php';
+require __DIR__ . '/auth.php';
 
 // Non registered
 Route::get('/', [HomeController::class, 'getHome'])->name('home');
@@ -36,14 +38,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/billing-portal', [StripeController::class, 'getBillingPortal'])->name('billing-portal');
 });
-
-// Dev
-if (app()->isLocal()) {
-    Route::get(
-        '/dev/login',
-        function () {
-            \Illuminate\Support\Facades\Auth::login(User::whereEmail('jacekobst1@gmail.com')->first());
-            return to_route('home');
-        }
-    );
-}
