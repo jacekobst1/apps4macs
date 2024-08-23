@@ -4,12 +4,6 @@
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
 
-    defineProps<{
-        flash: {
-            validationMessage?: string,
-        },
-    }>();
-
     const form = useForm({
         is_paid: 0,
     });
@@ -45,7 +39,6 @@
                     No
                 </BaseButton>
             </div>
-            <span v-if="flash.validationMessage" class="text-red-500 mt-5">{{ flash.validationMessage }}</span>
         </div>
     </StandardLayout>
 </template>
