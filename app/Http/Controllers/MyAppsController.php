@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PutUpdateAppRequest;
 use App\Models\App;
+use App\Services\Tools\AlertFlasher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -47,12 +48,16 @@ final readonly class MyAppsController
             $app->addLogo($request->logo);
         }
 
+        AlertFlasher::success('App updated successfully!');
+
         return to_route('my-apps.index');
     }
 
     public function delete(App $app): RedirectResponse
     {
         $app->delete();
+
+        AlertFlasher::success('App deleted successfully!');
 
         return to_route('my-apps.index');
     }

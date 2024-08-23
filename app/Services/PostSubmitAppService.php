@@ -8,6 +8,7 @@ use App\Enums\AppStatus;
 use App\Http\Requests\PostSubmitAppRequest;
 use App\Mail\NewAppSubmittedMail;
 use App\Models\App;
+use App\Services\Tools\AlertFlasher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -29,6 +30,10 @@ final readonly class PostSubmitAppService
         $this->createApp($request);
 
         $this->deleteTemplateAppIfExists($request);
+
+        AlertFlasher::success(
+            "Your app has been submitted successfully! Now it's under review. You will be notified about the result via email."
+        );
 
         return to_route('home');
     }
