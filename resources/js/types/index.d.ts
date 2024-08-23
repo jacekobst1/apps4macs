@@ -1,4 +1,4 @@
-import { Config } from 'ziggy-js';
+import {Config} from 'ziggy-js';
 
 export interface User {
     id: number;
@@ -12,4 +12,7 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
     ziggy: Config & { location: string };
+    flash?: {
+        alertSuccess?: string;
+    };
 };

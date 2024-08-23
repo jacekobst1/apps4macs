@@ -1,4 +1,5 @@
-import { ComponentCustomProperties } from "vue";
+// noinspection ES6UnusedImports
+import {ComponentCustomProperties} from "vue";
 
 declare module "@vue/runtime-core" {
     interface ComponentCustomProperties {
