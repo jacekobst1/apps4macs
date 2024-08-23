@@ -4,6 +4,7 @@
     import DropdownLink from '@/Components/breeze/DropdownLink.vue';
     import ResponsiveNavLink from '@/Components/breeze/ResponsiveNavLink.vue';
     import {Link} from '@inertiajs/vue3';
+    import Alert from "@/Components/shared/Alert.vue";
 
     const showingNavigationDropdown = ref(false);
 
@@ -13,6 +14,7 @@
 </script>
 
 <template>
+    <Alert/>
     <div>
         <div class="min-h-screen bg-gray-100">
             <div class="container mx-auto flex flex-col sm-justify-center px-4 sm:px-6 lg:px-8">
