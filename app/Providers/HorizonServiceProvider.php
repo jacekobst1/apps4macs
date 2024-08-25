@@ -29,15 +29,11 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewHorizon', function (?User $user = null) {
-            if (request()->bearerToken() && request()->bearerToken() === config('services.horizon.token')) {
-                return true;
-            }
+            $ploiMatch = request()->bearerToken() && request()->bearerToken() === config('services.horizon.token');
+            $mailMatch = $user->email == Config::get('env.admin_email');
+            $ipMatch = request()->ip() == Config::get('env.admin_ip');
 
-            if ($user->email === Config::get('env.admin_email')) {
-                return true;
-            }
-
-            return false;
+            return $ploiMatch || $mailMatch || $ipMatch;
         });
     }
 }
