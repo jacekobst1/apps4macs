@@ -30,7 +30,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     {
         Gate::define('viewHorizon', function (?User $user = null) {
             $ploiMatch = request()->bearerToken() && request()->bearerToken() === config('services.horizon.token');
-            $mailMatch = $user->email == Config::get('env.admin_email');
+            $mailMatch = $user?->email == Config::get('env.admin_email');
             $ipMatch = request()->ip() == Config::get('env.admin_ip');
 
             return $ploiMatch || $mailMatch || $ipMatch;
