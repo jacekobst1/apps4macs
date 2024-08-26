@@ -22,11 +22,27 @@ tasks:
     - artisan:view:cache
     - artisan:config:cache
     - artisan:migrate
+    - artisan:horizon:terminate
     - npm:install
     - npm:run:build
+    - deploy:publish
+    - php-fpm:reload
+  be:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:view:cache
+    - artisan:config:cache
+    - artisan:migrate
     - artisan:horizon:terminate
     - deploy:publish
     - php-fpm:reload
+  fe:
+    - deploy:prepare
+    - deploy:vendors
+    - npm:install
+    - npm:run:build
+    - deploy:publish
   npm:run:build:
     - run: 'cd {{release_or_current_path}} && npm run build'
 
