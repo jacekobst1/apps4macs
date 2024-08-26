@@ -27,9 +27,7 @@ final readonly class GetSubmitAppService
 
     private function getTemplateAppUrl(): ?string
     {
-        return Auth::user()->hasAnyApp()
-            ? null
-            : Auth::user()->appTemplate->url;
+        return Auth::user()->appTemplate?->url;
     }
 
     private function renderSubmitPage(GetSubmitAppRequest $request, ?string $templateUrl): Response
