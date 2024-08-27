@@ -104,10 +104,21 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
 
     public function canCreateApp(bool $isPaid): bool
     {
-        if (!$isPaid) {
-            return $this->apps()->free()->submittedOrActive()->count() === 0;
+        $currentApps = $this->apps()->submittedOrActive()->count();
+        $currentFreeApps = $this->apps()->free()->submittedOrActive()->count();
+        $allowedApps = $this->getNumberOfAllowedApps();
+
+        // If this is a free app and no free apps currently exist, allow it
+        if (!$isPaid && $currentFreeApps === 0) {
+            return true;
         }
 
-        return $this->getNumberOfAllowedApps() > $this->apps()->paid()->submittedOrActive()->count();
+        // Subtract the first free app from the current app count, if it exists
+        if ($currentFreeApps > 0) {
+            $currentApps--;
+        }
+
+        return $allowedApps > $currentApps;
     }
+
 }
