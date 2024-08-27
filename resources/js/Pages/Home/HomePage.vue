@@ -1,17 +1,17 @@
 <script setup lang="ts">
     import {Head, Link} from '@inertiajs/vue3';
-    import {ref} from "vue";
+    import {computed, ref} from "vue";
     import {useIntersectionObserver} from '@vueuse/core'
     import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import axios from "axios";
     import AppTile from "@/Components/shared/AppTile.vue";
+    import {PageProps} from "@/types";
 
-    const props = defineProps<{
-        auth: Record<string, any>;
-        apps: CursorPagination<App.Resources.AppResource>;
-    }>();
+    const props = defineProps<PageProps<{
+        apps: CursorPagination<App.Resources.AppResource>
+    }>>();
 
     const search = ref('');
     const last = ref(null);
@@ -45,6 +45,8 @@
             }
         }
     );
+
+    const submitAppLink = computed(() => props.auth.user ? '/new-app/specify-if-paid' : '/sign-up');
 </script>
 
 <template>
@@ -57,7 +59,7 @@
                 <p>No-brainer apps for devs and powerusers</p>
                 <p>Verified and maintained by "HumanIntelligence"</p>
             </div>
-            <Link :href="auth?.user ? '/new-app/specify-if-paid' : '/sign-up'">
+            <Link :href="submitAppLink">
                 <BaseButton class="shadow-2xl">
                     <v-icon name="co-plus" class="mr-2"/>
                     Submit new app
