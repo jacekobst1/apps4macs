@@ -25,7 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/specify-if-paid', [NewAppController::class, 'getSpecifyIfPaid'])->name('new-app.specify-if-paid');
         Route::get('/choose-plan', [NewAppController::class, 'getChoosePlan'])->name('new-app.choose-plan');
         Route::post('/choose-plan', [NewAppController::class, 'postChoosePlan']);
-        Route::get('/verify-payment', [NewAppController::class, 'getVerifyPayment'])->name('new-app.verify-payment');
+//        Route::get('/verify-payment', [NewAppController::class, 'getVerifyPayment'])->name('new-app.verify-payment');
         Route::get('/submit', [NewAppController::class, 'getSubmit'])->name('new-app.submit');
         Route::post('/submit', [NewAppController::class, 'postSubmit']);
     });
