@@ -23,7 +23,7 @@ final readonly class StripeService
             ->allowPromotionCodes()
             ->checkout([
                 'success_url' => route(
-                    'new-app.submit-app',
+                    'new-app.submit',
                     [
                         'session_id' => '{CHECKOUT_SESSION_ID}',
                         'is_paid' => $isPaid,
