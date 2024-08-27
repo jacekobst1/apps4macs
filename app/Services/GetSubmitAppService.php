@@ -9,31 +9,47 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Cashier\Cashier;
+use Stripe\Exception\ApiErrorException;
 
 final readonly class GetSubmitAppService
 {
+    /**
+     * @throws ApiErrorException
+     */
     public function handle(GetSubmitAppRequest $request): Response|RedirectResponse|null
     {
-        $user = Auth::user();
-
-        if (!$user->canCreateApp($request->is_paid)) {
-            return to_route('new-app.choose-plan');
+        if (
+            Auth::user()->canCreateApp($request->is_paid)
+            || $this->userJustPaid($request->session_id)
+        ) {
+            return $this->renderSubmitPage($request->is_paid);
         }
 
-        $templateUrl = $this->getTemplateAppUrl();
-
-        return $this->renderSubmitPage($request, $templateUrl);
+        return to_route('new-app.choose-plan');
     }
 
-    private function getTemplateAppUrl(): ?string
+    /**
+     * @throws ApiErrorException
+     */
+    private function userJustPaid(?string $sessionId): bool
     {
-        return Auth::user()->appTemplate?->url;
+        if (!$sessionId) {
+            return false;
+        }
+
+        $session = Cashier::stripe()->checkout->sessions->retrieve($sessionId);
+
+        return $session->payment_status === 'paid';
     }
 
-    private function renderSubmitPage(GetSubmitAppRequest $request, ?string $templateUrl): Response
+
+    private function renderSubmitPage(bool $isPaid): Response
     {
+        $templateUrl = Auth::user()->appTemplate?->url;
+
         return Inertia::render('NewApp/SubmitAppPage', [
-            'is_paid' => $request->is_paid,
+            'is_paid' => $isPaid,
             'template_url' => $templateUrl,
         ]);
     }

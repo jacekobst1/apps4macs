@@ -22,7 +22,13 @@ final readonly class StripeService
             ->newSubscription(self::DEFAULT_SUBSCRIPTION_TYPE, $priceType->getStripeId())
             ->allowPromotionCodes()
             ->checkout([
-                'success_url' => route('new-app.submit-app', ['is_paid' => $isPaid]),
+                'success_url' => route(
+                    'new-app.submit-app',
+                    [
+                        'session_id' => '{CHECKOUT_SESSION_ID}',
+                        'is_paid' => $isPaid,
+                    ]
+                ),
                 'cancel_url' => route('home'),
             ]);
     }
