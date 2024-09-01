@@ -15,7 +15,7 @@
             <div class="card-body flex-grow flex flex-col">
                 <h2 class="card-title mb-2 text-lg">Monthly plan</h2>
                 <div class="flex items-end mb-8">
-                    <span class="text font-semibold mr-1">8.99$</span>
+                    <span class="text font-semibold mr-1">$8.99</span>
                     <span class="text-sm text-gray-500"> /month</span>
                 </div>
                 <div class="mb-4 flex flex-col">
@@ -60,7 +60,7 @@
             <div class="card-body flex-grow flex flex-col">
                 <h2 class="card-title mb-2 text-lg">Yearly plan</h2>
                 <div class="flex items-end">
-                    <span class="text font-semibold mr-1">69.99$</span>
+                    <span class="text font-semibold mr-1">$69.99</span>
                     <span class="text-sm text-gray-500"> /year</span>
                 </div>
                 <span class="text-blue-400 -mt-3 mb-4">Save 35% annually</span>
