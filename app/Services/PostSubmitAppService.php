@@ -11,6 +11,7 @@ use App\Models\App;
 use App\Services\Tools\AlertFlasher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
@@ -68,6 +69,8 @@ final readonly class PostSubmitAppService
 
     private function sendMailToAdmin(App $app): void
     {
-        Mail::to(config('env.admin_email'))->queue(new NewAppSubmittedMail($app));
+        $adminEmail = Config::get('env.admin_email');
+
+        Mail::to($adminEmail)->queue(new NewAppSubmittedMail($app));
     }
 }
