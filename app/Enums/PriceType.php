@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use Illuminate\Support\Facades\App;
+
 enum PriceType: string
 {
     case Monthly = 'monthly';
@@ -11,7 +13,7 @@ enum PriceType: string
 
     public function getStripeId(): string
     {
-        if (!app()->isProduction()) {
+        if (!App::isProduction()) {
             return match ($this) {
                 self::Monthly => 'price_1PihkO2K1g0VVPPwg6aerZjo',
                 self::Yearly => 'price_1Pihkw2K1g0VVPPwfAmgBakm',

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +21,7 @@ class NgrokServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->isLocal()) {
+        if (App::isLocal()) {
             URL::forceScheme('https');
         }
     }
