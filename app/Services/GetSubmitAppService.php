@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Http\Requests\GetSubmitAppRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
 use Inertia\Response;
 use Laravel\Cashier\Cashier;
@@ -22,6 +23,7 @@ final readonly class GetSubmitAppService
         if (
             Auth::user()->canCreateApp($request->is_paid)
             || $this->userJustPaid($request->session_id)
+            || Auth::user()->email === Config::get('env.admin_email')
         ) {
             return $this->renderSubmitPage($request->is_paid);
         }

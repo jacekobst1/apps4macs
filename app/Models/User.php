@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Config;
 use Laravel\Cashier\Billable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -104,6 +105,10 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
 
     public function canCreateApp(bool $isPaid): bool
     {
+        if ($this->email === Config::get('env.admin_email')) {
+            return true;
+        }
+
         $currentApps = $this->apps()->submittedOrActive()->count();
         $currentFreeApps = $this->apps()->free()->submittedOrActive()->count();
         $allowedApps = $this->getNumberOfAllowedApps();
