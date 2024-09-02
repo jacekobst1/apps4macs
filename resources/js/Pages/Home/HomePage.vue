@@ -93,11 +93,5 @@
 </template>
 
 <style scoped>
-    .truncate-lines {
-        display: -webkit-box;
-        -webkit-line-clamp: 2; /* Limits to 2 lines */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+
 </style>
