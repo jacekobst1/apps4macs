@@ -2,7 +2,6 @@
     import {Head, Link} from '@inertiajs/vue3';
     import {computed, ref} from "vue";
     import {useIntersectionObserver} from '@vueuse/core'
-    import BaseInput from "@/Components/form/BaseInput.vue";
     import BaseButton from "@/Components/buttons/BaseButton.vue";
     import StandardLayout from "@/Layouts/StandardLayout.vue";
     import axios from "axios";
@@ -76,9 +75,9 @@
             </Link>
         </div>
 
-        <div class="flex justify-center mb-8">
-            <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>
-        </div>
+        <!--        <div class="flex justify-center mb-8">-->
+        <!--            <BaseInput v-model="search" class="w-full shadow-xl" placeholder='Search...' variant="primary"/>-->
+        <!--        </div>-->
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6 mb-10">
             <template v-for="app in allApps" :key="app.id">
