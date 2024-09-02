@@ -38,6 +38,7 @@ class AdminController extends Controller
     public function postAccept(App $app, Request $request): RedirectResponse
     {
         $app->status = AppStatus::Accepted;
+        $app->verified_at = now();
         $app->save();
 
         $additionalInfo = $request->input('additional_info');
