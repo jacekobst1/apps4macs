@@ -12,6 +12,12 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
+    <!-- Analytics -->
+    <script defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="042fd9a6-830c-4768-a82c-21499a9bd99a"
+    ></script>
+
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
