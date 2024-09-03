@@ -126,4 +126,8 @@ class User extends Authenticatable implements IAuthenticatable, MustVerifyEmail
         return $allowedApps > $currentApps;
     }
 
+    public function canUseFirstMonthDiscount(): bool
+    {
+        return !$this->subscriptions()->exists();
+    }
 }

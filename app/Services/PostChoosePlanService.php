@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Http\Requests\PostChoosePlanRequest;
 use App\Services\Internal\StripeService;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,7 +22,11 @@ final readonly class PostChoosePlanService
      */
     public function handle(PostChoosePlanRequest $request): Response
     {
-        $checkout = $this->stripeService->initStripeCheckout($request->price_type, $request->is_paid);
+        $checkout = $this->stripeService->initStripeCheckout(
+            priceType: $request->price_type,
+            isPaid: $request->is_paid,
+            firstMonthDiscount: Auth::user()->canUseFirstMonthDiscount(),
+        );
 
         return Inertia::location($checkout->toArray()['url']);
     }

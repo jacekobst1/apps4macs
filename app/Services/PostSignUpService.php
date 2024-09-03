@@ -32,7 +32,7 @@ final readonly class PostSignUpService
         $this->login($user);
 
         if ($request->is_paid) {
-            $checkout = $this->stripeService->initStripeCheckout($request->price_type, $request->is_paid);
+            $checkout = $this->stripeService->initStripeCheckout($request->price_type, $request->is_paid, true);
 
             return Inertia::location($checkout->toArray()['url']);
         }

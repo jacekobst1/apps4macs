@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Internal;
 
+use App\Enums\Coupon;
 use App\Enums\PriceType;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -16,20 +17,24 @@ final readonly class StripeService
     /**
      * @throws Exception
      */
-    public function initStripeCheckout(PriceType $priceType, bool $isPaid): Checkout
+    public function initStripeCheckout(PriceType $priceType, bool $isPaid, bool $firstMonthDiscount = false): Checkout
     {
-        return Auth::user()
-            ->newSubscription(self::DEFAULT_SUBSCRIPTION_TYPE, $priceType->getStripeId())
-            ->allowPromotionCodes()
-            ->checkout([
-                'success_url' => route(
-                    'new-app.submit',
-                    [
-                        'session_id' => '{CHECKOUT_SESSION_ID}',
-                        'is_paid' => $isPaid,
-                    ]
-                ),
-                'cancel_url' => route('home'),
-            ]);
+        $subscription = Auth::user()
+            ->newSubscription(self::DEFAULT_SUBSCRIPTION_TYPE, $priceType->getStripeId());
+
+        if ($firstMonthDiscount && $priceType->isMonthly()) {
+            $subscription->withCoupon(Coupon::FirstMonthOneDollar->getStripeId());
+        }
+
+        return $subscription->checkout([
+            'success_url' => route(
+                'new-app.submit',
+                [
+                    'session_id' => '{CHECKOUT_SESSION_ID}',
+                    'is_paid' => $isPaid,
+                ]
+            ),
+            'cancel_url' => route('home'),
+        ]);
     }
 }
