@@ -39,7 +39,8 @@
     <Head title="Sign up"/>
 
     <StandardLayout>
-        <div class="min-h-screen flex justify-center items-center md:-mt-16" :class="{ '-mt-16': !form.is_paid}">
+        <div class="min-h-screen flex justify-center items-center py-10 sm:py-0 md:-mt-16"
+             :class="{ '-mt-16': !form.is_paid}">
             <div>
                 <div class="w-full mb-6">
                     <h1 class="font-bold text-xl">Sign up</h1>

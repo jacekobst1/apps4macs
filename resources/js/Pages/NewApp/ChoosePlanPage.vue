@@ -30,7 +30,7 @@
     <Head title="Specify if paid"/>
 
     <StandardLayout>
-        <div class="min-h-screen flex justify-center items-center -mt-16">
+        <div class="min-h-screen flex justify-center items-center py-10 sm:py-0 md:-mt-16">
             <pricing
                 :post-paid-monthly="postPaidMonthly"
                 :post-paid-yearly="postPaidYearly"
