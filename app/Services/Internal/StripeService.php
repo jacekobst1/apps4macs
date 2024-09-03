@@ -27,6 +27,7 @@ final readonly class StripeService
         }
 
         return $subscription->checkout([
+            'payment_method_types' => ['card', 'paypal'],
             'success_url' => route(
                 'new-app.submit',
                 [
