@@ -11,7 +11,7 @@ import locationBack from "@/plugins/locationBack";
 const appName = import.meta.env.VITE_APP_NAME || 'apps4macs';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title?: string) => title ? `${title} - ${appName}` : appName,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob<DefineComponent>('./Pages/**/*.vue')),
     setup({el, App, props, plugin}) {
         const app = createApp({render: () => h(App, props)});

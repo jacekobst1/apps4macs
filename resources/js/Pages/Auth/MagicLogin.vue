@@ -19,7 +19,7 @@
 </script>
 
 <template>
-    <Head title="Login"/>
+    <Head title="Log in"/>
 
     <StandardLayout>
         <div class="min-h-screen flex justify-center items-center -top-16 relative">

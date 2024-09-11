@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {Head, Link} from '@inertiajs/vue3';
+    import {Link} from '@inertiajs/vue3';
     import {computed, ref} from "vue";
     import {useIntersectionObserver} from '@vueuse/core'
     import BaseButton from "@/Components/buttons/BaseButton.vue";
@@ -59,8 +59,6 @@
 </script>
 
 <template>
-    <Head title="List"/>
-
     <StandardLayout>
         <div class="mb-8 pt-6">
             <div class="text-sm sm:text-lg mb-4 text-gray-500">
