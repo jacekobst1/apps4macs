@@ -4,6 +4,10 @@ declare namespace App.Enums {
 }
 declare namespace App.Http.Requests {
     export type GetSubmitAppRequest = {
+        session_id: string | null;
+        is_paid: boolean;
+    };
+    export type GetVerifyPaymentRequest = {
         is_paid: boolean;
     };
     export type PostChoosePlanRequest = {
@@ -44,6 +48,7 @@ declare namespace App.Resources {
         description: string;
         is_paid: boolean;
         logo_url: string;
+        order: number | null;
         user: App.Resources.UserResource | null;
         created_at: string | null;
     };

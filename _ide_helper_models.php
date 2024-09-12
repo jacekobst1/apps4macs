@@ -26,20 +26,26 @@ namespace App\Models{use AllowDynamicProperties;use App\Enums\AppStatus;use Data
  * @property string|null $verified_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property int|null $order
+ * @property string|null $last_on_top
  * @property-read mixed $logo_url
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read User $user
+ * @method static Builder|App active()
  * @method static AppFactory factory($count = null, $state = [])
  * @method static Builder|App free()
  * @method static Builder|App newModelQuery()
  * @method static Builder|App newQuery()
  * @method static Builder|App paid()
  * @method static Builder|App query()
+ * @method static Builder|App submittedOrActive()
  * @method static Builder|App whereCreatedAt($value)
  * @method static Builder|App whereDescription($value)
  * @method static Builder|App whereId($value)
  * @method static Builder|App whereIsPaid($value)
+ * @method static Builder|App whereLastOnTop($value)
+ * @method static Builder|App whereOrder($value)
  * @method static Builder|App whereSentence($value)
  * @method static Builder|App whereStatus($value)
  * @method static Builder|App whereTitle($value)

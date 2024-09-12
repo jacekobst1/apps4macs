@@ -30,6 +30,7 @@ final readonly class GetHomeService
     {
         $apps = App::with('media')
             ->where('status', AppStatus::Accepted)
+            ->orderBy('order')
             ->cursorPaginate(24);
 
         return AppResource::collect($apps)->toArray();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Console\Commands\RotateApps;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
@@ -13,17 +14,17 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware) {
+    ->withMiddleware(static function (Middleware $middleware): void {
         $middleware->web(append: [
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
-        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })
-    ->withSchedule(function (Schedule $schedule) {
+    ->withSchedule(static function (Schedule $schedule): void {
+        $schedule->command(RotateApps::class)->daily();
         $schedule->command('telescope:prune --hours=72')->daily(); // remove older than 7 days
     })
     ->create();

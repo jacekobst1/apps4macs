@@ -20,6 +20,7 @@ final class AppResource extends Data
         public string $description,
         public bool $is_paid,
         public string $logo_url,
+        public ?int $order,
         public ?UserResource $user,
         public ?string $created_at,
     ) {
