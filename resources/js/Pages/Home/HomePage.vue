@@ -7,6 +7,7 @@
     import axios from "axios";
     import AppTile from "@/Components/shared/AppTile.vue";
     import {PageProps} from "@/types";
+    import PHBadge from "@/Components/layout/PHBadge.vue";
 
     const props = defineProps<PageProps<{
         apps: CursorPagination<App.Resources.AppResource>
@@ -85,6 +86,9 @@
         <div v-if="!noMoreItems" ref="last" class="h-10"></div>
         <div v-if="isLoading && !noMoreItems" class="mb-10 text-center font-bold">
             <span>Loading more items...</span>
+        </div>
+        <div class="flex justify-center pb-5">
+            <PHBadge/>
         </div>
     </StandardLayout>
 </template>

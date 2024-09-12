@@ -7,7 +7,6 @@
     import Alert from "@/Components/shared/Alert.vue";
     import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
     import Config from "../config";
-    import PHBadge from "@/Components/layout/PHBadge.vue";
 
     const {props: {auth: {user}}} = usePage();
 
@@ -183,9 +182,6 @@
                 <main>
                     <slot/>
                 </main>
-            </div>
-            <div class="flex justify-center pb-5">
-                <PHBadge/>
             </div>
         </div>
     </div>
