@@ -3,11 +3,13 @@
     import Dropdown from '@/Components/breeze/Dropdown.vue';
     import DropdownLink from '@/Components/breeze/DropdownLink.vue';
     import ResponsiveNavLink from '@/Components/breeze/ResponsiveNavLink.vue';
-    import {Link} from '@inertiajs/vue3';
+    import {Link, usePage} from '@inertiajs/vue3';
     import Alert from "@/Components/shared/Alert.vue";
     import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
     import Config from "../config";
     import PHBadge from "@/Components/layout/PHBadge.vue";
+
+    const {props: {auth: {user}}} = usePage();
 
     const showingNavigationDropdown = ref(false);
 
@@ -48,7 +50,7 @@
                             <div class="hidden sm:flex sm:items-center sm:ms-6">
                                 <!-- Settings Dropdown -->
                                 <Link
-                                    v-if="!$page.props.auth?.user"
+                                    v-if="!user"
                                     :href="route('login')"
                                     class="text-black transition hover:text-black/70"
                                 >
@@ -63,7 +65,7 @@
                                                     type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                                 >
-                                                    {{ $page.props.auth.user.name }}
+                                                    {{ user.name }}
 
                                                     <svg
                                                         class="ms-2 -me-0.5 h-4 w-4"
@@ -84,7 +86,7 @@
                                         <template #content>
                                             <DropdownLink :href="route('my-apps.index')">My apps</DropdownLink>
                                             <DropdownLink
-                                                v-if="$page.props.auth.user?.is_stripe_customer"
+                                                v-if="user?.is_stripe_customer"
                                                 :href="route('billing-portal')"
                                             >
                                                 Billing
@@ -99,7 +101,7 @@
 
                             <!-- Hamburger -->
                             <Link
-                                v-if="!$page.props.auth?.user"
+                                v-if="!user"
                                 :href="route('login')"
                                 class="sm:hidden self-center text-black transition hover:text-black/70"
 
@@ -153,10 +155,10 @@
                         <!-- Responsive Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
                             <div class="mt-3 space-y-1">
-                                <span class="pl-4 text-gray-400">{{ $page.props.auth.user?.name }}</span>
+                                <span class="pl-4 text-gray-400">{{ user?.name }}</span>
                                 <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
                                 <ResponsiveNavLink
-                                    v-if="$page.props.auth.user?.is_stripe_customer"
+                                    v-if="user?.is_stripe_customer"
                                     :href="route('billing-portal')"
                                 >
                                     Billing
