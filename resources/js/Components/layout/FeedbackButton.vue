@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import {ref} from "vue";
+    import Config from "../../config";
 
     const dialog = ref<HTMLDialogElement>();
 
@@ -26,8 +27,8 @@
             <h3 class="text-lg">Want to leave some feedback? Or just chat? 🤓</h3>
             <div class="flex flex-col md:flex-row md:items-center pt-4">
                 <p class="mr-2">Contact me at:</p>
-                <a href="mailto:jacek@apps4macs.com" class="text-lg font-bold hover:underline">
-                    jacek@apps4macs.com
+                <a :href="'mailto:' + Config.contactMail" class="text-lg font-bold hover:underline outline-none">
+                    {{ Config.contactMail }}
                 </a>
             </div>
         </div>

@@ -9,7 +9,6 @@
 
     const showingNavigationDropdown = ref(false);
 
-
     function hideDropdown() {
         showingNavigationDropdown.value = false;
     }
