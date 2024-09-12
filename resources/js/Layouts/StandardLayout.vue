@@ -6,6 +6,7 @@
     import {Link} from '@inertiajs/vue3';
     import Alert from "@/Components/shared/Alert.vue";
     import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
+    import Config from "../config";
 
     const showingNavigationDropdown = ref(false);
 
@@ -33,7 +34,9 @@
                                             alt="App logo"
                                             class="w-12 h-12 mr-1"
                                         />
-                                        <span class="text-lg font-semibold">apps4macs</span>
+                                        <span class="text-lg font-semibold">
+                                            {{ Config.appName }}
+                                        </span>
                                         <!--                                        <ApplicationLogo-->
                                         <!--                                            class="block h-9 w-auto fill-current text-gray-800"-->
                                         <!--                                        />-->
