@@ -4,7 +4,9 @@
 
     defineProps<{
         apps: Array<App.Resources.AppResource>;
-    }>();</script>
+    }>();
+</script>
+
 <template>
     <StandardLayout>
         <Head title="Admin - submitted apps"/>
