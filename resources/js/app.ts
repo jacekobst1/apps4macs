@@ -7,11 +7,10 @@ import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import {registerIcons, registerSweetalert2} from "@/plugins";
 import locationBack from "@/plugins/locationBack";
-
-const appName = import.meta.env.VITE_APP_NAME || 'apps4macs';
+import Config from "@/config";
 
 createInertiaApp({
-    title: (title?: string) => title ? `${title} - ${appName}` : appName,
+    title: (title?: string) => title ? `${title} - ${Config.appName}` : Config.appName,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob<DefineComponent>('./Pages/**/*.vue')),
     setup({el, App, props, plugin}) {
         const app = createApp({render: () => h(App, props)});
