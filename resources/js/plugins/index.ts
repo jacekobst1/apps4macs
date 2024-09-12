@@ -10,13 +10,13 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 // Icons
 import {addIcons, OhVueIcon} from "oh-vue-icons";
-import {CoPlus, IoMailUnreadOutline, OiInfo} from "oh-vue-icons/icons";
+import {CiChat, CoPlus, IoMailUnreadOutline, OiInfo} from "oh-vue-icons/icons";
 
 // Types
 import type {App} from 'vue'
 
 export function registerIcons(app: App) {
-    addIcons(CoPlus, OiInfo, IoMailUnreadOutline);
+    addIcons(CoPlus, OiInfo, IoMailUnreadOutline, CiChat);
 
     app.component("v-icon", OhVueIcon);
 }

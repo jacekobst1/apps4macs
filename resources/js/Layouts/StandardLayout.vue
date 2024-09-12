@@ -5,8 +5,10 @@
     import ResponsiveNavLink from '@/Components/breeze/ResponsiveNavLink.vue';
     import {Link} from '@inertiajs/vue3';
     import Alert from "@/Components/shared/Alert.vue";
+    import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
 
     const showingNavigationDropdown = ref(false);
+
 
     function hideDropdown() {
         showingNavigationDropdown.value = false;
@@ -15,6 +17,7 @@
 
 <template>
     <Alert/>
+    <FeedbackButton/>
     <div>
         <div class="min-h-screen bg-gray-100">
             <div class="container mx-auto flex flex-col sm-justify-center px-4 sm:px-6 lg:px-8">
