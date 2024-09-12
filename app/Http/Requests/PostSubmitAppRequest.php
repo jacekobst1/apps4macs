@@ -32,4 +32,11 @@ final class PostSubmitAppRequest extends Data
         public readonly bool $is_paid,
     ) {
     }
+
+    public static function messages(): array
+    {
+        return [
+            'logo.dimensions' => 'The logo must have a 1:1 aspect ratio.',
+        ];
+    }
 }
