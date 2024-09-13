@@ -70,7 +70,7 @@
                         label="Is this a paid app?"
                         variant="primary"
                         class="mb-2"
-                        tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid. All apps are regularly controlled to prevent scam."
+                        tooltip-text="If your app is 100% free, you can leave this box unchecked. If you have at least 1 paid plan or feature, that means that your app is paid."
                     />
 
                     <Pricing

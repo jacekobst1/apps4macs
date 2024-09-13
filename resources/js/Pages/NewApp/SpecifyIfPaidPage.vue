@@ -27,9 +27,6 @@
                 <p class="mt-2">
                     Your app is considered to be paid, if you have at least 1 paid plan or feature.
                 </p>
-                <p>
-                    All apps are regularly controlled to prevent scam.
-                </p>
             </div>
             <div class="flex space-x-20 mt-10">
                 <BaseButton @click="makeRequest(true)" :disabled=form.processing class="w-32 shadow-2xl">

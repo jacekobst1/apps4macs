@@ -63,8 +63,8 @@
     <StandardLayout>
         <div class="mb-8 pt-6">
             <div class="text-sm sm:text-lg mb-4 text-gray-500">
-                <p>The coolest apps for devs and other geeks</p>
-                <p>Maintained by humans. No trash</p>
+                <p>The coolest apps for devs and geeks.</p>
+                <p>Verified and maintained by one of them.</p>
             </div>
             <Link :href="submitAppLink">
                 <BaseButton class="shadow-2xl">
