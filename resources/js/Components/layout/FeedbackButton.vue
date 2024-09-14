@@ -17,9 +17,8 @@
         name="ci-chat"
         @click="showModal()"
         class="w-16 h-16 fixed z-50 cursor-pointer
-               bottom-2 md:bottom-10 right-2
+               bottom-2 md:bottom-10 right-2 md:right-10
                hover:scale-110 transition-transform duration-300"
-        :class="visible ? 'md:right-14' : 'md:right-10'"
     />
 
     <dialog ref="dialog" @close="visible = false" class="modal">
