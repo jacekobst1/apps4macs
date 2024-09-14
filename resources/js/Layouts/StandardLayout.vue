@@ -7,6 +7,7 @@
     import Alert from "@/Components/shared/Alert.vue";
     import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
     import Config from "../config";
+    import ResponsiveNavStandardLink from "@/Components/breeze/ResponsiveNavStandardLink.vue";
 
     const {props: {auth: {user}}} = usePage();
 
@@ -46,7 +47,14 @@
                                 </div>
                             </div>
 
-                            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <div class="hidden sm:flex sm:items-center">
+                                <a
+                                    :href="Config.analyticsUrl"
+                                    class="text-black transition hover:text-black/70 mr-6 cursor-pointer"
+                                >
+                                    Analytics
+                                </a>
+
                                 <!-- Settings Dropdown -->
                                 <Link
                                     v-if="!user"
@@ -56,7 +64,7 @@
                                     Log in
                                 </Link>
 
-                                <div v-else class="ms-3 relative">
+                                <div v-else class="relative">
                                     <Dropdown align="right" width="48">
                                         <template #trigger>
                                             <span class="inline-flex rounded-md">
@@ -99,16 +107,7 @@
                             </div>
 
                             <!-- Hamburger -->
-                            <Link
-                                v-if="!user"
-                                :href="route('login')"
-                                class="sm:hidden self-center text-black transition hover:text-black/70"
-
-                            >
-                                Log in
-                            </Link>
-
-                            <div v-else class="-me-2 flex items-center sm:hidden">
+                            <div class="-me-2 flex items-center sm:hidden">
                                 <button
                                     @click="showingNavigationDropdown = !showingNavigationDropdown"
                                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -151,21 +150,38 @@
                             <!--                            </ResponsiveNavLink>-->
                         </div>
 
-                        <!-- Responsive Settings Options -->
+                        <!-- Mobile Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
                             <div class="mt-3 space-y-1">
-                                <span class="pl-4 text-gray-400">{{ user?.name }}</span>
-                                <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
-                                <ResponsiveNavLink
-                                    v-if="user?.is_stripe_customer"
-                                    :href="route('billing-portal')"
-                                >
-                                    Billing
-                                </ResponsiveNavLink>
-                                <ResponsiveNavLink @click="hideDropdown" :href="route('logout')" method="post"
-                                                   as="button">
-                                    Log Out
-                                </ResponsiveNavLink>
+                                <template v-if="!user">
+                                    <ResponsiveNavLink :href="route('login')">Log in</ResponsiveNavLink>
+                                    <ResponsiveNavStandardLink
+                                        :href="Config.analyticsUrl">
+                                        Analytics
+                                    </ResponsiveNavStandardLink>
+                                </template>
+                                <template v-else>
+                                    <span class="pl-4 text-gray-400">{{ user?.name }}</span>
+                                    <ResponsiveNavLink :href="route('my-apps.index')">My apps</ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        v-if="user?.is_stripe_customer"
+                                        :href="route('billing-portal')"
+                                    >
+                                        Billing
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavStandardLink
+                                        :href="Config.analyticsUrl">
+                                        Analytics
+                                    </ResponsiveNavStandardLink>
+                                    <ResponsiveNavLink
+                                        @click="hideDropdown"
+                                        :href="route('logout')"
+                                        method="post"
+                                        as="button"
+                                    >
+                                        Log Out
+                                    </ResponsiveNavLink>
+                                </template>
                             </div>
                         </div>
                     </div>
