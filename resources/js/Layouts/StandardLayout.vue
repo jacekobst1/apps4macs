@@ -7,7 +7,6 @@
     import Alert from "@/Components/shared/Alert.vue";
     import FeedbackButton from "@/Components/layout/FeedbackButton.vue";
     import Config from "../config";
-    import ResponsiveNavStandardLink from "@/Components/breeze/ResponsiveNavStandardLink.vue";
 
     const {props: {auth: {user}}} = usePage();
 
@@ -48,12 +47,12 @@
                             </div>
 
                             <div class="hidden sm:flex sm:items-center">
-                                <a
-                                    :href="Config.analyticsUrl"
-                                    class="text-black transition hover:text-black/70 mr-6 cursor-pointer"
-                                >
-                                    Analytics
-                                </a>
+                                <!--                                <a-->
+                                <!--                                    :href="Config.analyticsUrl"-->
+                                <!--                                    class="text-black transition hover:text-black/70 mr-6 cursor-pointer"-->
+                                <!--                                >-->
+                                <!--                                    Analytics-->
+                                <!--                                </a>-->
 
                                 <!-- Settings Dropdown -->
                                 <Link
@@ -155,10 +154,10 @@
                             <div class="mt-3 space-y-1">
                                 <template v-if="!user">
                                     <ResponsiveNavLink :href="route('login')">Log in</ResponsiveNavLink>
-                                    <ResponsiveNavStandardLink
-                                        :href="Config.analyticsUrl">
-                                        Analytics
-                                    </ResponsiveNavStandardLink>
+                                    <!--                                    <ResponsiveNavStandardLink-->
+                                    <!--                                        :href="Config.analyticsUrl">-->
+                                    <!--                                        Analytics-->
+                                    <!--                                    </ResponsiveNavStandardLink>-->
                                 </template>
                                 <template v-else>
                                     <span class="pl-4 text-gray-400">{{ user?.name }}</span>
@@ -169,10 +168,10 @@
                                     >
                                         Billing
                                     </ResponsiveNavLink>
-                                    <ResponsiveNavStandardLink
-                                        :href="Config.analyticsUrl">
-                                        Analytics
-                                    </ResponsiveNavStandardLink>
+                                    <!--                                    <ResponsiveNavStandardLink-->
+                                    <!--                                        :href="Config.analyticsUrl">-->
+                                    <!--                                        Analytics-->
+                                    <!--                                    </ResponsiveNavStandardLink>-->
                                     <ResponsiveNavLink
                                         @click="hideDropdown"
                                         :href="route('logout')"
